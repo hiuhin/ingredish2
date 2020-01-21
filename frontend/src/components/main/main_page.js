@@ -6,7 +6,7 @@ class MainPage extends React.Component {
   render() {
     return (
       <div className="main">
-        <h2>Welcome to MasterChef</h2>
+        <h2>Welcome to ingredish</h2>
       </div>
     );
   }
