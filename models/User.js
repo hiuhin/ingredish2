@@ -22,6 +22,9 @@ const UserSchema = new Schema({
     recipe: {
       type: Schema.Types.ObjectId,
       ref: "recipes"
+    },
+    notes: {
+      type: String
     }
   }]
 });
