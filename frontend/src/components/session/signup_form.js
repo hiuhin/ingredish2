@@ -2,6 +2,8 @@
 
 import React from "react";
 import { withRouter } from "react-router-dom";
+import "./session_form.scss";
+import egg from "../../images/egg1.png";
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -58,42 +60,39 @@ class SignupForm extends React.Component {
   render() {
     return (
       <div className="signup-form-container">
-        <div>
-          <div>Sign Up</div>
-          <form onSubmit={this.handleSubmit}>
-            <div className="signup-form">
-              <br />
+        <div className="signup-form">
+          <div className="title">Sign Up</div>
+          <form>
+            <div className="inner-signup-form">
               <input
                 type="text"
                 value={this.state.handle}
                 onChange={this.update("handle")}
                 placeholder="Name"
               />
-              <br />
+              
               <input
                 type="text"
                 value={this.state.email}
                 onChange={this.update("email")}
                 placeholder="Email"
               />
-              <br />
+              
               <input
                 type="password"
                 value={this.state.password}
                 onChange={this.update("password")}
                 placeholder="Password"
               />
-              <br />
+             
               <input
                 type="password"
                 value={this.state.password2}
                 onChange={this.update("password2")}
                 placeholder="Confirm Password"
               />
-              <br />
-              <input type="submit" value="Submit" />
+              <div /><img src={egg} className="submit" onClick={this.handleSubmit} width="65px" height="65px" /></div>
               {this.renderErrors()}
-            </div>
           </form>
         </div>
       </div>
