@@ -1,19 +1,51 @@
-.login-form-container {
-    display: flex;
-    justify-content: center;
+.title {
+    font-size: 26px;
+    color: white;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    margin-bottom: 8px;
 }
+
 .login-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    line-height: 30px;
 }
 
-.signup-form-container {
+.signup-form input {
+    margin: 2px;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.466);
+    border: none;
+}
+
+::placeholder {
+    color: rgb(65, 65, 65);
+}
+
+.login-form input {
+   margin: 2px;
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.466);
+    border: none;
+}
+
+.inner-signup-form {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
-    line-height: 14px;
+    flex-direction: column;
+    align-items: flex-end;
 }
 
+.inner-login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
 
+.submit {
+    cursor: pointer;
+    
+}
