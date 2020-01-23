@@ -9,11 +9,14 @@ class MainPage extends React.Component {
   render() {
     return (
       <div>
-        <video autoPlay muted loop id="background_video">
-          <source src={background} type="video/mp4" />
-        </video>
+          <video autoPlay muted loop className="background_video">
+            <source src={background} type="video/mp4" />
+          </video>
+
         <div className="main">
-          <h2>Welcome to ingredish</h2>
+        <div>
+          <footer className="footer">Copyright &copy; 2020 ingredish</footer>
+        </div>
         </div>
       </div>
     );
