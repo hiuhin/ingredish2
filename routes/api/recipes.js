@@ -17,18 +17,10 @@ router.get(
   (req, res) => {
     debugger;
     console.log("here");
-    console.log("router", req.query.search.split(",").join(" "));
+    console.log("router", req.query.search.split(","));
     Recipe.find({
-      keywords: req.query.search
-      // keywords: { $text: { $search: `${req.query.search.split(",").join(" ")}` }}
+      keywords: { $all: req.query.search.split(",")}
     })
-      // $text: { $search: `${req.query.search.split(",").join(" ")}` }
-
-      // Recipe.find({ keywords: req.query.search.split(",").join(" ") })
-        // Recipe.find({
-        //   keywords: { $regex: /^eggs/ }
-        // })
-          // Recipe.find()
           .sort({ date: -1 })
           .then(recipes => res.json(recipes))
           .catch(err =>
