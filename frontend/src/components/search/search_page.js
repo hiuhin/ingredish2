@@ -45,6 +45,11 @@ class SearchPage extends React.Component {
     //   <Route to ="/recipe" component={RecipeDetail}></Route>
     return (
       <div>
+        <ul>
+          {this.state.searchTerm
+            ? this.state.searchTerm.map((ing, id) => <li>{ing}</li>)
+            : null}
+        </ul>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
@@ -58,11 +63,9 @@ class SearchPage extends React.Component {
         <ul>
           {this.props.recipes.map((recipe, idx) => (
             <div>
-                  <nav>
-                      <Link to={`/${recipe._id}`} >
-                      {recipe.name}
-                  </Link>
-                  </nav>  
+              <nav>
+                <Link to={`/${recipe._id}`}>{recipe.name}</Link>
+              </nav>
 
               <img src={recipe.image_url} alt="" />
               <li key={idx}>
