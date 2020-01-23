@@ -6,16 +6,23 @@ import MainPage from "./main/main_page";
 import SearchPageContainer from "./search/search_page_container";
 import RecipeDetail from "./recipe/recipe_detail";
 import Modal from "./modal/modal";
+import "../index.css";
 
 const App = () => (
   <div>
     <Modal />
     <NavBarContainer />
-    <Switch>
-      <ProtectedRoute exact path="/search" component={SearchPageContainer} />
-      <AuthRoute exact path="/" component={MainPage} />
-      <ProtectedRoute exact path="/:recipeId" component={RecipeDetail} />
-    </Switch>
+    <div className="appbody">
+      <Switch>
+        <ProtectedRoute
+          exact
+          path="/search"
+          component={SearchPageContainer}
+        />
+        <AuthRoute exact path="/" component={MainPage} />
+        <ProtectedRoute exact path="/:recipeId" component={RecipeDetail} />
+      </Switch>
+    </div>
   </div>
 );
 

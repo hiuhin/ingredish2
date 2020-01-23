@@ -1,4 +1,36 @@
-#search, div form button, div button{
-    position: relative;
-    top: 300px;
+.search {
+    width: 100%;
 }
+
+.searchbackground {
+    background-image: url("../../images/pastabg.jpg");
+    background-size: cover;
+    height: 100vh;
+    position: relative;
+}
+
+.searchbackground:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(206, 206, 206, 0.329);
+}
+
+.searchcontent {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    top: 25%;
+}
+
+.searchform input{
+    font-size: 20px;
+    padding: 10px;
+    border: 1px solid rgba(128, 128, 128, 0.575);
+    border-radius: 4px;
+    box-shadow: 3px 2px 3px rgba(92, 84, 84, 0.671)
+}
+
