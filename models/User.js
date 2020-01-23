@@ -17,7 +17,16 @@ const UserSchema = new Schema({
   date: {
     type: Date,
     default: Date.now
-  }
+  },
+  saved_recipes: [{
+    recipe: {
+      type: Schema.Types.ObjectId,
+      ref: "recipes"
+    },
+    notes: {
+      type: String
+    }
+  }]
 });
 
-module.exports = User = mongoose.model("User", UserSchema);
+module.exports = User = mongoose.model("users", UserSchema);
