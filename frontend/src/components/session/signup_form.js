@@ -70,29 +70,37 @@ class SignupForm extends React.Component {
                 onChange={this.update("handle")}
                 placeholder="Name"
               />
-              
+
               <input
                 type="text"
                 value={this.state.email}
                 onChange={this.update("email")}
                 placeholder="Email"
               />
-              
+
               <input
                 type="password"
                 value={this.state.password}
                 onChange={this.update("password")}
                 placeholder="Password"
               />
-             
+
               <input
                 type="password"
                 value={this.state.password2}
                 onChange={this.update("password2")}
                 placeholder="Confirm Password"
               />
-              <div /><img src={egg} className="submit" onClick={this.handleSubmit} width="65px" height="65px" /></div>
-              {this.renderErrors()}
+              <div />
+              <img
+                src={egg}
+                className="submit"
+                onClick={this.handleSubmit}
+                width="65px"
+                height="65px"
+              />
+            </div>
+            {this.renderErrors()}
           </form>
         </div>
       </div>
