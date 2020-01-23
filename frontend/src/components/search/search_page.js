@@ -3,6 +3,7 @@ import React from 'react';
 // import axios from 'axios';
 // import RecipeDetail from './../recipe/recipe_detail';
 import { Link, Route } from 'react-router-dom';
+import './search_page.scss';
 
 class SearchPage extends React.Component {
   constructor(props) {
@@ -52,13 +53,16 @@ class SearchPage extends React.Component {
         </ul>
         <form onSubmit={this.handleSubmit}>
           <input
+            id="search"
             type="text"
             onChange={this.update("searchVal")}
-            onDoubleClick={this.addSearch}
+            // onDoubleClick={this.addSearch}
+            
             value={this.state.searchVal}
           />
           <button type="submit">Search</button>
         </form>
+        <button onClick={this.addSearch}>add</button> 
 
         <ul>
           {this.props.recipes.map((recipe, idx) => (

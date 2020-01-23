@@ -17,11 +17,10 @@ router.get(
   (req, res) => {
     debugger;
     console.log("here");
-    //   let search = parseFloat(req.query.search.replace(/,/g, ''));
     console.log("router", req.query.search.split(",").join(" "));
-    //   Recipe.createIndex({ keywords: "text"});
     Recipe.find({
       keywords: req.query.search
+      // keywords: { $text: { $search: `${req.query.search.split(",").join(" ")}` }}
     })
       // $text: { $search: `${req.query.search.split(",").join(" ")}` }
 
