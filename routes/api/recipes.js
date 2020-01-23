@@ -15,9 +15,8 @@ router.get(
   `/`,
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    debugger;
-    console.log("here");
-    console.log("router", req.query.search.split(","));
+    // console.log("here");
+    // console.log("router", req.query.search.split(","));
     Recipe.find({
       keywords: { $all: req.query.search.split(",")}
     })
@@ -29,12 +28,12 @@ router.get(
   }
 );
 
-// router.get("/", (req, res) => {
-//     debugger;
-//     Recipe.find({
-//       ingredients: { $text: { $search: req.config["0"] } }
-//     }).then(recipes => res.json(recipes));
-// })
+router.get("/:recipe_id", (req, res) => {
+  // console.log(req.params);
+    Recipe.find(
+      { _id: req.params.recipe_id }
+    ).then(recipe => res.json(recipe));
+})
 
 // router.get("/user/:user_id", (req, res) => {
 //     Tweet.find({ user: req.params.user_id })
@@ -56,7 +55,7 @@ router.post(
   // passport.authenticate("jwt", { session: false }),
   async (req, res) => {
     
-      console.log(req.body);
+      // console.log(req.body);
       req.body.directions = {};
     // const user = await user.findById(req.user.id).select("-password");
 

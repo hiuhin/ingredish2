@@ -13,8 +13,9 @@ class SearchPage extends React.Component {
         searchVal: "",
     };
       this.handleSubmit = this.handleSubmit.bind(this);
-      this.addSearch = this.addSearch.bind(this);
-       this.props.fetchRecipes(this.state.searchTerm);
+    this.addSearch = this.addSearch.bind(this);
+    this.deleteIng = this.deleteIng.bind(this);
+      //  this.props.fetchRecipes(this.state.searchTerm);
   }
 
     update(field) {
@@ -32,23 +33,41 @@ class SearchPage extends React.Component {
         this.setState({ searchVal: "" });
         }
     
+  deleteIng(value) {
+    // debugger;
+    var array = Array.from(this.state.searchTerm);
+    var index = array.indexOf(value)
+    if (index !== -1) {
+      array.splice(index, 1);
+      this.setState({ searchTerm: array });
+    }
+      
+    }
 
-    handleSubmit() {
-        // debugger;
-        this.props.fetchRecipes(this.state.searchTerm).then(() => this.setState({
+  handleSubmit() {
+    // debugger;
+    this.props.fetchRecipes(this.state.searchTerm)
+        .then(() => this.setState({
             searchTerm:[]
         }));
         
   }
 
   render() {
-    // console.log('recipes', typeof this.props.recipes);
-    //   <Route to ="/recipe" component={RecipeDetail}></Route>
+    // console.log("recipes", this.props.recipes);
+    // console.log("searchTerm", this.state.searchval);
     return (
       <div>
         <ul>
           {this.state.searchTerm
-            ? this.state.searchTerm.map((ing, id) => <li>{ing}</li>)
+            ? this.state.searchTerm.map((ing, id) => (
+              <ul>
+                <li>{ing}
+                  <button onClick={()=>this.deleteIng(ing)}>Delete</button>
+                </li>
+               </ul>
+            )
+              )
             : null}
         </ul>
         <form onSubmit={this.handleSubmit}>
@@ -56,17 +75,16 @@ class SearchPage extends React.Component {
             id="search"
             type="text"
             onChange={this.update("searchVal")}
-            // onDoubleClick={this.addSearch}
-            
             value={this.state.searchVal}
-          />
+            />
+          
           <button type="submit">Search</button>
         </form>
         <button onClick={this.addSearch}>add</button> 
 
         <ul>
-          {this.props.recipes.map((recipe, idx) => (
-            <div>
+          { this.props.recipes.map((recipe, idx) => (
+            <div id="search-results">
               <nav>
                 <Link to={`/${recipe._id}`}>{recipe.name}</Link>
               </nav>
