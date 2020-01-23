@@ -1,52 +1,56 @@
 import React from 'react';
 // import Recipe from "./../../../../models/Recipe";
-import axios from 'axios';
+// import axios from 'axios';
+// import RecipeDetail from './../recipe/recipe_detail';
+import { Link, Route } from 'react-router-dom';
 
 class SearchPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        searchTerm: "",
-        // loading: false,
-        // recipes: ""
+        searchTerm: [],
+        searchVal: "",
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  componentDidMount() {
-    // this.props.fetchRecipes();
+      this.handleSubmit = this.handleSubmit.bind(this);
+      this.addSearch = this.addSearch.bind(this);
+       this.props.fetchRecipes(this.state.searchTerm);
   }
 
-  update(field) {
+    update(field) {
+      
       return e => {
-        //   this.search(e.target.value);
+        //   this.state.searchTerm = [...this.state.searchTerm, e.target.value];
       this.setState({ [field]: e.target.value });
     };
-  }
+    }
+    
+    addSearch() {
+        // debugger;
+       
+        this.setState({searchTerm: [...this.state.searchTerm, this.state.searchVal] });
+        this.setState({ searchVal: "" });
+        }
+    
 
     handleSubmit() {
         // debugger;
-    this.props.fetchRecipes(this.state.searchTerm);
+        this.props.fetchRecipes(this.state.searchTerm).then(() => this.setState({
+            searchTerm:[]
+        }));
+        
   }
-
-//   search = async val => {
-//     this.setState({ loading: true });
-//     const res = await axios(
-      
-//     );
-//     const movies = await res.data.results;
-
-//     this.setState({ movies, loading: false });
-//   };
 
   render() {
     // console.log('recipes', typeof this.props.recipes);
+    //   <Route to ="/recipe" component={RecipeDetail}></Route>
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
           <input
             type="text"
-            onChange={this.update("searchTerm")}
-            value={this.state.searchTerm}
+            onChange={this.update("searchVal")}
+            onDoubleClick={this.addSearch}
+            value={this.state.searchVal}
           />
           <button type="submit">Search</button>
         </form>
@@ -54,12 +58,19 @@ class SearchPage extends React.Component {
         <ul>
           {this.props.recipes.map((recipe, idx) => (
             <div>
-              <h1>{recipe.name}</h1>
+                  <nav>
+                      <Link to={`/${recipe._id}`} >
+                      {recipe.name}
+                  </Link>
+                  </nav>  
+
+              <img src={recipe.image_url} alt="" />
               <li key={idx}>
                 {recipe.keywords.map((ing, id) => (
-                    <li key={id}>{ing}</li>
+                  <li key={id}>{ing}</li>
                 ))}
               </li>
+              <button>Save</button>
             </div>
           ))}
         </ul>

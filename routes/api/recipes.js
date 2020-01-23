@@ -12,19 +12,29 @@ require("./../../config/passport")(passport);
 const jwt = require("jsonwebtoken");
 
 router.get(
-  "/",
+  `/`,
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    // debugger;
-      console.log("here");
-      console.log("router", req.query);
-    //   Recipe.find(keywords: req.params.config)
-    Recipe.find()
-      .sort({ date: -1 })
-      .then(recipes => res.json(recipes))
-      .catch(err =>
-        res.status(404).json({ norecipesfound: "No Recipes found" })
-      );
+    debugger;
+    console.log("here");
+    //   let search = parseFloat(req.query.search.replace(/,/g, ''));
+    console.log("router", req.query.search.split(",").join(" "));
+    //   Recipe.createIndex({ keywords: "text"});
+    Recipe.find({
+      keywords: req.query.search
+    })
+      // $text: { $search: `${req.query.search.split(",").join(" ")}` }
+
+      // Recipe.find({ keywords: req.query.search.split(",").join(" ") })
+        // Recipe.find({
+        //   keywords: { $regex: /^eggs/ }
+        // })
+          // Recipe.find()
+          .sort({ date: -1 })
+          .then(recipes => res.json(recipes))
+          .catch(err =>
+            res.status(404).json({ norecipesfound: "No Recipes found" })
+          );
   }
 );
 

@@ -12,7 +12,8 @@ const RecipeSchema = new Schema({
   },
   keywords: {
     type: [String],
-    required: true
+    required: true,
+    text: true
     },
     directions: {
         type: Object,

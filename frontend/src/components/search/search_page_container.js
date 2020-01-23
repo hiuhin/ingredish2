@@ -7,6 +7,7 @@ const mapStateToProps = state => {
     // console.log('here',state);
   return {
     // errors: state.errors.session
+    currentUser: state.session.user,
     recipes: Array.from(state.recipes)
   };
 };
