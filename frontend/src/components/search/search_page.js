@@ -13,8 +13,9 @@ class SearchPage extends React.Component {
         searchVal: "",
     };
       this.handleSubmit = this.handleSubmit.bind(this);
-      this.addSearch = this.addSearch.bind(this);
-       this.props.fetchRecipes(this.state.searchTerm);
+    this.addSearch = this.addSearch.bind(this);
+    this.deleteIng = this.deleteIng.bind(this);
+      //  this.props.fetchRecipes(this.state.searchTerm);
   }
 
     update(field) {
@@ -32,6 +33,16 @@ class SearchPage extends React.Component {
         this.setState({ searchVal: "" });
         }
     
+  deleteIng(value) {
+    // debugger;
+    var array = Array.from(this.state.searchTerm);
+    var index = array.indexOf(value)
+    if (index !== -1) {
+      array.splice(index, 1);
+      this.setState({ searchTerm: array });
+    }
+      
+    }
 
     handleSubmit() {
         // debugger;
@@ -42,13 +53,18 @@ class SearchPage extends React.Component {
   }
 
   render() {
-    // console.log('recipes', typeof this.props.recipes);
-    //   <Route to ="/recipe" component={RecipeDetail}></Route>
     return (
       <div>
         <ul>
           {this.state.searchTerm
-            ? this.state.searchTerm.map((ing, id) => <li>{ing}</li>)
+            ? this.state.searchTerm.map((ing, id) => (
+              <ul>
+                <li>{ing}
+                  <button onClick={()=>this.deleteIng(ing)}>Delete</button>
+                </li>
+               </ul>
+            )
+              )
             : null}
         </ul>
         <form onSubmit={this.handleSubmit}>
@@ -59,7 +75,9 @@ class SearchPage extends React.Component {
             // onDoubleClick={this.addSearch}
             
             value={this.state.searchVal}
-          />
+            // onClick={<button>delete</button>}
+            />
+          
           <button type="submit">Search</button>
         </form>
         <button onClick={this.addSearch}>add</button> 
