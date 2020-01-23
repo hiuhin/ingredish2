@@ -2,7 +2,6 @@
     position: fixed;
     width: 100vw;
     background-color: rgba(17, 17, 17, 0);
-
     display: flex;
     justify-content: space-between;
     z-index: 99; 
@@ -43,3 +42,79 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+
+
+@media only screen and (max-width: 600px) {
+    .logo {
+        display: none;
+    }
+    .right-links button {
+        display: none;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 2%;
+        width: 100vw;
+        background-color: rgba(17, 17, 17, 0.3);
+        height: 40px;
+    }
+
+    .nav-icon, .nav-icon-active {
+        // position: fixed;
+        top: 0;
+        right: 0;
+        margin: 1.2em;
+        width: 35px;
+    }
+
+    .nav-icon:after, 
+    .nav-icon:before, 
+    .nav-icon div,
+    .nav-icon-active:after, 
+    .nav-icon-active:before, 
+    .nav-icon-active div  {
+        background-color: #fff;
+        border-radius: 2px;
+        content: '';
+        display: block;
+        height: 2px;
+        margin: 7px 0;
+        transition: all .2s ease-in-out;
+    }
+
+    .nav-icon-active:before {
+        transform: translateY(9px) rotate(135deg);
+    }
+
+    .nav-icon-active:after {
+        transform: translateY(-9px) rotate(-135deg);
+    }
+
+    .nav-icon-active div {
+        transform: scale(0);
+    }
+
+    .menu-active {
+        // display: inline-block;
+        position: fixed;
+        top: 10%;
+        left: 0;
+        text-align: center;
+    }
+
+    .menu-buttons {
+        display: flex;
+        flex-direction: column;
+        width: 100vw;
+    }
+
+    .menu-buttons > * {
+        height: 40px;
+    }
+
+}
+
+.menu-hidden {
+    display: none;
+}
