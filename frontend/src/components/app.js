@@ -12,8 +12,8 @@ const App = () => (
     <Modal />
     <NavBarContainer />
     <Switch>
+      <ProtectedRoute exact path="/search" component={SearchPageContainer} />
       <AuthRoute exact path="/" component={MainPage} />
-      <ProtectedRoute exact path="/" component={SearchPageContainer} />
       <ProtectedRoute exact path="/:recipeId" component={RecipeDetail} />
     </Switch>
   </div>
