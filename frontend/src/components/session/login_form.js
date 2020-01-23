@@ -21,7 +21,7 @@ class LoginForm extends React.Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.currentUser === true) {
-      this.props.history.push("/");
+      this.props.history.push("/search");
     }
 
     this.setState({ errors: nextProps.errors });
@@ -42,24 +42,30 @@ class LoginForm extends React.Component {
       password: this.state.password
     };
 
-    this.props.login(user).then(() => this.props.closeModal());
+    this.props.login(user).then(() => this.props.closeModal())
+      .then(() => this.props.history.push("/search"));
   }
 
   renderErrors() {
     return (
       <ul>
         {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>{this.state.errors[error]}</li>
+          <li className="each-error" key={`error-${i}`}>{this.state.errors[error]}</li>
         ))}
       </ul>
     );
   }
 
+
   render() {
     return (
       <div className="login-form-container">
+
+        {this.renderErrors()}
+
         <div className="login-form">
           <div className="title">Log in</div>
+
           <form>
             <div className="inner-login-form">
               <input
@@ -68,7 +74,7 @@ class LoginForm extends React.Component {
                 onChange={this.update("email")}
                 placeholder="Email"
               />
-              
+
               <input
                 type="password"
                 value={this.state.password}
@@ -77,7 +83,7 @@ class LoginForm extends React.Component {
               />
               
               <div /><img src={egg} className="submit" onClick={this.handleSubmit} width="65px" height="65px" /></div>
-              {this.renderErrors()}
+      
           </form>
         </div>
       </div>
