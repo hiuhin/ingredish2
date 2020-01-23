@@ -130,7 +130,7 @@ html {
  */
 
 a:focus {
-    outline: thin dotted;
+    outline: 0;
 }
 
 /**
@@ -376,58 +376,6 @@ body {
     height: 100vh;
 }
 
-.navbar {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-.nav-right {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;   
-}
-
-.nav-left {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;   
-}
-
-.right-links {
-    display: flex;
-    justify-content: space-between;
-}
-
-.login-form-container {
-    display: flex;
-    justify-content: center;
-}
-.login-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    line-height: 30px;
-}
-
-.signup-form-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    line-height: 14px;
-}
-
-.button {
-    background-color:slategrey;
-    border: none;
-    color: white;
-    padding: 12px 14px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 4px 2px;
-    cursor: pointer;
-    font-size: 14px;
-}
 
 .footer {
     text-align: center;
@@ -439,4 +387,9 @@ body {
 
 .main {
     text-align: center;
+}
+
+* {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: red;
 }

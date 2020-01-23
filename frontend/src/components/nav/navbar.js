@@ -1,6 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import './navbar.scss';
+import logo from '../../images/ingredish-logo.png';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -25,8 +26,8 @@ class NavBar extends React.Component {
     } else {
       return (
         <div className="right-links">
-          <Link className="button" to={"/signup"}>Signup</Link>
-          <Link className="button" to={"/login"}>Login</Link>
+          <button onClick={() => this.props.openModal('signup')}>Signup</button>
+          <button onClick={() => this.props.openModal('login')}>Login</button>
         </div>
       );
     }
@@ -36,7 +37,7 @@ class NavBar extends React.Component {
     return (
       <div className="navbar">
         <div className="nav-left">
-          <h1>ingredish</h1>
+          <img src={logo} className="logo" alt="logo"/>
         </div>
         <div className="nav-right">
           {this.getLinks()}
