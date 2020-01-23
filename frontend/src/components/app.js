@@ -13,11 +13,8 @@ const App = () => (
     <Modal />
     <NavBarContainer />
     <Switch>
-<<<<<<< HEAD
       <Route exact path="/test" component={RecipeItem} />
-=======
       <ProtectedRoute exact path="/search" component={SearchPageContainer} />
->>>>>>> master
       <AuthRoute exact path="/" component={MainPage} />
       <ProtectedRoute exact path="/:recipeId" component={RecipeDetail} />
     </Switch>
