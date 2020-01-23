@@ -1,8 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD
 import './recipe_item.scss';
-=======
->>>>>>> master
 
 class RecipeItem extends React.Component {
     constructor(props) {
