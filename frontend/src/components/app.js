@@ -6,12 +6,14 @@ import MainPage from "./main/main_page";
 import SearchPageContainer from "./search/search_page_container";
 import RecipeDetail from "./recipe/recipe_detail";
 import Modal from "./modal/modal";
+import RecipeItem from "./recipe/recipe_item";
 
 const App = () => (
   <div>
     <Modal />
     <NavBarContainer />
     <Switch>
+      <Route exact path="/test" component={RecipeItem} />
       <AuthRoute exact path="/" component={MainPage} />
       <ProtectedRoute exact path="/" component={SearchPageContainer} />
       <ProtectedRoute exact path="/:recipeId" component={RecipeDetail} />

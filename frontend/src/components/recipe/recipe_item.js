@@ -1,4 +1,5 @@
 import React from 'react';
+import './recipe_item.scss';
 
 class RecipeItem extends React.Component {
     constructor(props) {
@@ -29,26 +30,26 @@ class RecipeItem extends React.Component {
     }
     render() {
         return (
-            <div>
-                <div></div>
-                <div>
-                    <div></div>
-                    <div>
-                        {this.state.name}
-                        <img src={this.state.image_url} alt="image"/>
-                        {this.state.ingredients}
-                        {
-                            Object.keys(this.state.directions).map(key, i => (
-                                `${key}: ${this.state.directions[key]}`
-                            ))
-                        }
-                        {this.state.nutrition_facts}
-                    </div>
-                    <div></div>
+          <div className="recipe-item">
+            <div className="recipe-left">left</div>
+            <div className="recipe-center">
+              <div></div>
+              <div>
+                <div className="recipe-name">{this.state.name}</div>
+                <img src={this.state.image_url} width="100%" />
+                <div>{this.state.ingredients}</div>
+                <div className="recipe-directions">
+                  {Object.keys(this.state.directions).map((key, i) => (
+                    <li key={key}>{`${key}: ${this.state.directions[key]}`}</li>
+                  ))}
                 </div>
-                <div></div>
+                {this.state.nutrition_facts}
+              </div>
+              <div></div>
             </div>
-        )
+            <div className="recipe-inner">right</div>
+          </div>
+        );
     }
 }
 
