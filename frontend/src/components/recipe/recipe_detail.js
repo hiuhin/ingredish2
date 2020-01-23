@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from 'react-router-dom';
+// import Recipe from './../../../../models/Recipe';
 
 
 class RecipeDetail extends React.Component {
@@ -8,13 +10,34 @@ class RecipeDetail extends React.Component {
     // this.addSearch = this.addSearch.bind(this);
   }
 
-  
+  componentDidMount() {
+    this.props.fetchRecipe(this.props.recipeId);
+  }
 
   render() {
-    console.log(this.props);
+    // let recipe = Recipe.find(this.props.recipeId);
+    console.log('recipedetail', this.props.recipe);
     return (
-      <div>
-      Detail
+      <div id="search-detail">
+        <nav>
+          <Link to="/search"> Back to Search</Link>
+        </nav>
+        {this.props.recipe ?
+          (<div>
+            < p > {this.props.recipe.name}</p>
+            <img src={this.props.recipe.image_url} alt="" />
+            <ul>
+              {Array.from(this.props.recipe.ingredients).map((ing, id) =>
+                <li key={id}>{ing}</li>
+              )}
+            </ul>
+            <ul>
+              {Array.from(this.props.recipe.directions).map((dir, id) =>
+                <li key={id}>{dir}</li>
+              )}
+            </ul>
+          </div>) : ""}
+        
       </div>
     );
   }

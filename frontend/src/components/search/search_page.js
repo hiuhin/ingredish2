@@ -44,15 +44,18 @@ class SearchPage extends React.Component {
       
     }
 
-    handleSubmit() {
-        // debugger;
-        this.props.fetchRecipes(this.state.searchTerm).then(() => this.setState({
+  handleSubmit() {
+    // debugger;
+    this.props.fetchRecipes(this.state.searchTerm)
+        .then(() => this.setState({
             searchTerm:[]
         }));
         
   }
 
   render() {
+    // console.log("recipes", this.props.recipes);
+    // console.log("searchTerm", this.state.searchval);
     return (
       <div>
         <ul>
@@ -72,10 +75,7 @@ class SearchPage extends React.Component {
             id="search"
             type="text"
             onChange={this.update("searchVal")}
-            // onDoubleClick={this.addSearch}
-            
             value={this.state.searchVal}
-            // onClick={<button>delete</button>}
             />
           
           <button type="submit">Search</button>
@@ -83,8 +83,8 @@ class SearchPage extends React.Component {
         <button onClick={this.addSearch}>add</button> 
 
         <ul>
-          {this.props.recipes.map((recipe, idx) => (
-            <div>
+          { this.props.recipes.map((recipe, idx) => (
+            <div id="search-results">
               <nav>
                 <Link to={`/${recipe._id}`}>{recipe.name}</Link>
               </nav>
