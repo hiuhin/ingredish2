@@ -12,10 +12,6 @@ const App = () => (
     <Switch>
       <AuthRoute exact path="/" component={MainPage} />
     </Switch>
-    <div className="footer">
-      <h1>ingredish</h1>
-      <footer>Copyright &copy; 2020 ingredish</footer>
-    </div>
   </div>
 );
 
