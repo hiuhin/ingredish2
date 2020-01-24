@@ -22,12 +22,16 @@
     padding: 10px;
     font-size: 15px;
     border-radius: 5px;
-    background-color: rgba(255, 255, 255, 0.466);
+    background-color:  rgba(255, 255, 255, 0.466);
     border: none;
 }
 
-::placeholder {
-    color: rgb(65, 65, 65);
+.inner-signup-form ::placeholder {
+    color: rgb(80, 79, 79);
+}
+
+.inner-login-form ::placeholder {
+    color: rgb(80, 79, 79);
 }
 
 .login-form input {

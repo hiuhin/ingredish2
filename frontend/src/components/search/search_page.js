@@ -4,7 +4,8 @@ import React from 'react';
 // import RecipeDetail from './../recipe/recipe_detail';
 import { Link, Route } from 'react-router-dom';
 import './search_page.scss';
-import { faSearch} from "@fortawesome/free-solid-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class SearchPage extends React.Component {
@@ -60,10 +61,11 @@ class SearchPage extends React.Component {
     // console.log("recipes", this.props.recipes);
     // console.log("searchTerm", this.state.searchval);
     return (
-      <div className="search">
+      <div>
         <div className="searchbackground">
-          <div className="searchcontent">
-            <form className="searchform" onSubmit={this.handleSubmit}>
+          <form className="searchform" onSubmit={this.handleSubmit}>
+            <div className="searchbar">
+              <FontAwesomeIcon icon={faSearch} />
               <input
                 id="search"
                 type="text"
@@ -73,45 +75,47 @@ class SearchPage extends React.Component {
 
                 value={this.state.searchVal}
               />
-              <div onClick={this.addSearch}>+</div>
-              <button type="submit">
-                Search
-              </button>
-            </form>
-            <div className="searchTerms">
-               <ul>
-          {this.state.searchTerm
-            ? this.state.searchTerm.map((ing, id) => (
-              <ul>
-                <li>{ing}
-                  <button onClick={()=>this.deleteIng(ing)}>Delete</button>
-                </li>
-               </ul>
-            )
-              )
-            : null}
-        </ul>
+              <div onClick={this.addSearch} className="searchadd">
+                +
+              </div>
             </div>
-
-            <ul>
-              {this.props.recipes.map((recipe, idx) => (
-                <div>
-                  <nav>
-                    <Link to={`/${recipe._id}`}>{recipe.name}</Link>
-                  </nav>
-
-                  <img src={recipe.image_url} alt="" />
-                  <li key={idx}>
-                    {recipe.keywords.map((ing, id) => (
-                      <li key={id}>{ing}</li>
-                    ))}
-                  </li>
-                  <button>Save</button>
-                </div>
-              ))}
-            </ul>
-          </div>
+            <button type="submit">Show Me Recipes!</button>
+          </form>
         </div>
+
+        <div className="searchTerms">
+          <ul>
+            {this.state.searchTerm
+              ? this.state.searchTerm.map((ing, id) => (
+                    <li>
+                      {ing}
+                      <span onClick={() => this.deleteIng(ing)}>
+                        <FontAwesomeIcon icon={faMinusCircle} />
+                      </span>
+                    </li>
+                ))
+                : null}
+            </ul>
+        </div>
+
+        <ul className="recipes">
+          {this.props.recipes.map((recipe, idx) => (
+            <li>
+              <nav>
+                <Link to={`/${recipe._id}`}>{recipe.name}</Link>
+              </nav>
+
+              <img src={recipe.image_url} className="recipeimg" alt="" />
+              {/* <li key={idx}>
+                {recipe.keywords.map((ing, id) => (
+                  <li key={id}>{ing}</li>
+                ))}
+              </li> */}
+              {/* <button>Save</button> */}
+            </li>
+          ))}
+        </ul>
+
       </div>
     );
   }
