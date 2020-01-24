@@ -83,24 +83,6 @@ class SearchPage extends React.Component {
           </form>
         </div>
 
-<<<<<<< HEAD
-            <ul id='search-results'>
-              {this.props.recipes.map((recipe, idx) => (
-                <div>
-                  <nav>
-                    <Link to={`/${recipe._id}`}>{recipe.name}</Link>
-                  </nav>
-
-                  <img src={recipe.image_url} alt="" />
-                  <li key={idx}>
-                    {recipe.keywords.map((ing, id) => (
-                      <li key={id}>{ing}</li>
-                    ))}
-                  </li>
-                  <button>Save</button>
-                </div>
-              ))}
-=======
         <div className="searchTerms">
           <ul>
             {this.state.searchTerm
@@ -113,7 +95,6 @@ class SearchPage extends React.Component {
                     </li>
                 ))
                 : null}
->>>>>>> master
             </ul>
         </div>
 
