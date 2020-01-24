@@ -7,6 +7,7 @@ import SearchPageContainer from "./search/search_page_container";
 // import RecipeDetail from "./recipe/recipe_detail";
 import RecipeDetailContainer from './recipe/recipe_detail_container';
 import Modal from "./modal/modal";
+import "../index.css";
 
 const App = () => (
   <div>
