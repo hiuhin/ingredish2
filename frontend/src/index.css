@@ -370,7 +370,7 @@ textarea {
 
 
 body {
-    background-image: linear-gradient(-45deg, lightblue, lightpink); 
+    /* background-image: linear-gradient(-45deg, lightblue, lightpink);  */
     padding: 0;
     margin: 0;
     height: 100vh;
