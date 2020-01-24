@@ -1,12 +1,10 @@
-.search {
-    width: 100%;
-}
-
 .searchbackground {
-    background-image: url("../../images/pastabg.jpg");
+    background-image: url("../../images/cuttingboard.jpeg");
     background-size: cover;
     height: 100vh;
     position: relative;
+    display: flex;
+    flex-direction: column;
 }
 
 .searchbackground:before {
@@ -16,21 +14,84 @@
     right: 0;
     left: 0;
     bottom: 0;
-    background: rgba(206, 206, 206, 0.329);
+    background: rgba(0, 0, 0, 0.253);
 }
 
-.searchcontent {
+.searchform {
+    display: flex;
+    flex-direction: column;
     position: relative;
     display: flex;
-    justify-content: center;
-    top: 25%;
+    align-items: center;
+    top: 20%;
 }
 
 .searchform input{
+    position: relative;
     font-size: 20px;
     padding: 10px;
+    padding-left: 50px;
     border: 1px solid rgba(128, 128, 128, 0.575);
     border-radius: 4px;
-    box-shadow: 3px 2px 3px rgba(92, 84, 84, 0.671)
+    box-shadow: 3px 2px 3px rgba(92, 84, 84, 0.671);
+    
 }
 
+.searchform svg {
+        font-size: 25px;
+        position: absolute;
+        z-index: 2;
+        padding: 10px;
+}
+
+::placeholder {
+    color: rgb(248, 136, 31);
+}
+
+.searchbar {
+    display: flex;
+}
+
+.searchadd {
+    background-color: white;
+    padding: 10px 15px;
+    font-size: 25px;
+    border-radius: 4px;
+    margin: 0 5px;
+    border: 1px solid rgba(128, 128, 128, 0.575);
+    box-shadow: 3px 2px 3px rgba(92, 84, 84, 0.671);
+    cursor: pointer;
+}
+
+.searchform button {
+    margin: 10px;
+    padding: 8px 15px;
+    box-shadow: 3px 2px 3px rgba(92, 84, 84, 0.671);
+}
+
+.searchTerms {
+    position: absolute;
+    width: 50%;
+    top: 40%;
+    left: 25%;
+}
+
+.searchTerms ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    justify-content: space-evenly;
+}
+
+.searchTerms li {
+    margin: 5px;
+    font-size: 25px;
+    padding: 10px;
+    color: rgb(0, 0, 0);
+    background-color: rgba(255, 255, 255, 0.602);
+    border-radius: 100px;
+    svg {
+        font-size: 20px;
+        padding: 0 5px;
+    }
+}
