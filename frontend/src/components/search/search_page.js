@@ -99,21 +99,22 @@ class SearchPage extends React.Component {
 
         <ul className="recipes">
           {this.props.recipes.map((recipe, idx) => (
-            <div>
+            <li>
               <nav>
                 <Link to={`/${recipe._id}`}>{recipe.name}</Link>
               </nav>
 
-              <img src={recipe.image_url} alt="" />
-              <li key={idx}>
+              <img src={recipe.image_url} className="recipeimg" alt="" />
+              {/* <li key={idx}>
                 {recipe.keywords.map((ing, id) => (
                   <li key={id}>{ing}</li>
                 ))}
-              </li>
-              <button>Save</button>
-            </div>
+              </li> */}
+              {/* <button>Save</button> */}
+            </li>
           ))}
         </ul>
+
       </div>
     );
   }
