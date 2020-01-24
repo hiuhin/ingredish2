@@ -4,6 +4,8 @@ import React from 'react';
 // import RecipeDetail from './../recipe/recipe_detail';
 import { Link, Route } from 'react-router-dom';
 import './search_page.scss';
+import { faSearch} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class SearchPage extends React.Component {
   constructor(props) {
@@ -57,8 +59,26 @@ class SearchPage extends React.Component {
     // console.log("recipes", this.props.recipes);
     // console.log("searchTerm", this.state.searchval);
     return (
-      <div>
-        <ul>
+      <div className="search">
+        <div className="searchbackground">
+          <div className="searchcontent">
+            <form className="searchform" onSubmit={this.handleSubmit}>
+              <input
+                id="search"
+                type="text"
+                onChange={this.update("searchVal")}
+                placeholder="Add Ingredients"
+                // onDoubleClick={this.addSearch}
+
+                value={this.state.searchVal}
+              />
+              <div onClick={this.addSearch}>+</div>
+              <button type="submit">
+                Search
+              </button>
+            </form>
+            <div className="searchTerms">
+               <ul>
           {this.state.searchTerm
             ? this.state.searchTerm.map((ing, id) => (
               <ul>
@@ -70,35 +90,27 @@ class SearchPage extends React.Component {
               )
             : null}
         </ul>
-        <form onSubmit={this.handleSubmit}>
-          <input
-            id="search"
-            type="text"
-            onChange={this.update("searchVal")}
-            value={this.state.searchVal}
-            />
-          
-          <button type="submit">Search</button>
-        </form>
-        <button onClick={this.addSearch}>add</button> 
-
-        <ul>
-          { this.props.recipes.map((recipe, idx) => (
-            <div id="search-results">
-              <nav>
-                <Link to={`/${recipe._id}`}>{recipe.name}</Link>
-              </nav>
-
-              <img src={recipe.image_url} alt="" />
-              <li key={idx}>
-                {recipe.keywords.map((ing, id) => (
-                  <li key={id}>{ing}</li>
-                ))}
-              </li>
-              <button>Save</button>
             </div>
-          ))}
-        </ul>
+
+            <ul>
+              {this.props.recipes.map((recipe, idx) => (
+                <div>
+                  <nav>
+                    <Link to={`/${recipe._id}`}>{recipe.name}</Link>
+                  </nav>
+
+                  <img src={recipe.image_url} alt="" />
+                  <li key={idx}>
+                    {recipe.keywords.map((ing, id) => (
+                      <li key={id}>{ing}</li>
+                    ))}
+                  </li>
+                  <button>Save</button>
+                </div>
+              ))}
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }
