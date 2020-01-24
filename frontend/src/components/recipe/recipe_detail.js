@@ -13,11 +13,13 @@ class RecipeDetail extends React.Component {
 
   componentDidMount() {
     this.props.fetchRecipe(this.props.recipeId);
+
   }
 
   render() {
+    const { recipes, recipeId } = this.props;
     // let recipe = Recipe.find(this.props.recipeId);
-    console.log('recipedetail', this.props.recipe);
+    console.log('recipedetail', recipes[recipeId]);
     return (
       // <div id="search-detail">
       //   <nav>
@@ -44,7 +46,7 @@ class RecipeDetail extends React.Component {
         <nav>
           <Link to="/search"> Back to Search</Link>
         </nav>
-        {this.props.recipe ? 
+        {recipes[recipeId] ? 
           (
             <div className="recipe-item">
               <img src={showBg} className="show-bg" />
@@ -54,21 +56,21 @@ class RecipeDetail extends React.Component {
                 <div>
                   <img
                     className="recipe-img"
-                    src={this.props.recipe.image_url}
+                    src={recipes[recipeId].image_url}
                     width="100%"
                   />
-                  <div className="recipe-name">{this.props.recipe.name}</div>
-                  <div className="recipe-nutrition">{this.props.recipe.nutrition_facts}</div>
+                  <div className="recipe-name">{recipes[recipeId].name}</div>
+                  <div className="recipe-nutrition">{recipes[recipeId].nutrition_facts}</div>
                   <div className="ingredients">Ingredients</div>
                   <div className="recipe-ingredients">
-                    {this.props.recipe.ingredients.map((ing, i) => (
+                    {recipes[recipeId].ingredients.map((ing, i) => (
                       <li key={i}>{ing}</li>
                     ))}
                   </div>
                   <div className="directions">Directions</div>
                   <div className="recipe-directions">
-                    {Object.keys(this.props.recipe.directions).map((key, i) => (
-                      <li key={key}>{`${key}: ${this.props.recipe.directions[key]}`}</li>
+                    {Object.keys(recipes[recipeId].directions).map((key, i) => (
+                      <li key={key}>{`${key}: ${recipes[recipeId].directions[key]}`}</li>
                     ))}
                   </div>
                 </div>
