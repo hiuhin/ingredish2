@@ -368,6 +368,15 @@ textarea {
 /* end of css reset */
 
 
+
+body {
+    /* background-image: linear-gradient(-45deg, lightblue, lightpink);  */
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+}
+
+
 .footer {
     text-align: center;
 }
@@ -382,7 +391,7 @@ textarea {
 
 * {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    color: red;
+    color: rgb(59, 59, 59);
 }
 
 

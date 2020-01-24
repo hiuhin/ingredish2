@@ -46,7 +46,7 @@ class SignupForm extends React.Component {
 
     this.props
       .signup(user, this.props.history)
-      .then(() => this.props.closeModal);
+      // .then(() => this.props.closeModal());
   }
 
   renderErrors() {

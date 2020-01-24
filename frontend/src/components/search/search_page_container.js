@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import { fetchAllRecipes } from "./../../actions/recipe_actions";
 import SearchPage from "./search_page";
+import { closeModal } from '../../actions/modal_actions';
 
 const mapStateToProps = state => {
     // debugger;
@@ -14,7 +15,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchRecipes: (search) => dispatch(fetchAllRecipes(search))
+    fetchRecipes: (search) => dispatch(fetchAllRecipes(search)),
+    closeModal: () => dispatch(closeModal())
   };
 };
 
