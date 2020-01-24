@@ -58,18 +58,7 @@ class SearchPage extends React.Component {
     // console.log("searchTerm", this.state.searchval);
     return (
       <div>
-        <ul>
-          {this.state.searchTerm
-            ? this.state.searchTerm.map((ing, id) => (
-              <ul>
-                <li>{ing}
-                  <button onClick={()=>this.deleteIng(ing)}>Delete</button>
-                </li>
-               </ul>
-            )
-              )
-            : null}
-        </ul>
+        
         <form onSubmit={this.handleSubmit}>
           <input
             id="search"
@@ -81,6 +70,19 @@ class SearchPage extends React.Component {
           <button type="submit">Search</button>
         </form>
         <button onClick={this.addSearch}>add</button> 
+
+        <ul>
+          {this.state.searchTerm
+            ? this.state.searchTerm.map((ing, id) => (
+              <ul>
+                <li>{ing}
+                  <button onClick={() => this.deleteIng(ing)}>Delete</button>
+                </li>
+              </ul>
+            )
+            )
+            : null}
+        </ul>
 
         <ul>
           { this.props.recipes.map((recipe, idx) => (

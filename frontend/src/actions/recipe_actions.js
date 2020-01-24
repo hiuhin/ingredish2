@@ -31,9 +31,8 @@ export const fetchAllRecipes = (search) => dispatch => {
 }
   
 export const fetchRecipe = (id) => dispatch => {
-  // debugger;
-  return (APIUtil.fetchRecipe(id).then(res => console.log('actionsrecipe',res)));
-    // dispatch(receiveRecipes(res))))
+  debugger;
+  return (APIUtil.fetchRecipe(id).then(res => dispatch(receiveRecipes(res))));
 }
     
 
