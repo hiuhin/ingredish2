@@ -1,4 +1,4 @@
-import { RECEIVE_ALL_RECIPES } from "../actions/recipe_actions";
+import { RECEIVE_ALL_RECIPES, RECEIVE_RECIPE } from "../actions/recipe_actions";
 
 // const initialState = {
 //   isAuthenticated: false,
@@ -14,7 +14,9 @@ export default function (state = {}, action) {
       return action.recipes.data;
         // ...state,
         // isAuthenticated: !!action.currentUser,
-         
+    case RECEIVE_RECIPE:
+      debugger;
+      return action.recipe;
     default:
       return state;
   }
