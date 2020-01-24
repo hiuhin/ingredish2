@@ -1,4 +1,6 @@
 import React from 'react';
+import './recipe_item.scss';
+import showBg from '../../images/cuttingboard.jpeg'
 
 class RecipeItem extends React.Component {
     constructor(props) {
@@ -29,26 +31,31 @@ class RecipeItem extends React.Component {
     }
     render() {
         return (
-            <div>
-                <div></div>
-                <div>
-                    <div></div>
-                    <div>
-                        {this.state.name}
-                        <img src={this.state.image_url} alt="image"/>
-                        {this.state.ingredients}
-                        {
-                            Object.keys(this.state.directions).map(key, i => (
-                                `${key}: ${this.state.directions[key]}`
-                            ))
-                        }
-                        {this.state.nutrition_facts}
-                    </div>
-                    <div></div>
+          <div className="recipe-item">
+            <img src={showBg} className="show-bg"/>
+            <div className="recipe-left"></div>
+            <div className="recipe-center">
+              <div></div>
+              <div>
+                <img className="recipe-img" src={this.state.image_url} width="100%" />
+                <div className="recipe-name">{this.state.name}</div>
+                <div className="recipe-nutrition">{this.state.nutrition_facts}</div>
+                <div className="ingredients">Ingredients</div>
+                <div className="recipe-ingredients">{this.state.ingredients.map((ing, i) => (
+                    <li key={i}>{ing}</li>
+                ))}</div>
+                <div className="directions">Directions</div>
+                <div className="recipe-directions">
+                  {Object.keys(this.state.directions).map((key, i) => (
+                    <li key={key}>{`${key}: ${this.state.directions[key]}`}</li>
+                  ))}
                 </div>
-                <div></div>
+              </div>
+              <div></div>
             </div>
-        )
+            <div className="recipe-inner"></div>
+          </div>
+        );
     }
 }
 
