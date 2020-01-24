@@ -47,24 +47,6 @@ class RecipeDetail extends React.Component {
         <nav>
           <Link to="/search"> Back to Search</Link>
         </nav>
-<<<<<<< HEAD
-        {this.props.recipe.length != 0  ?
-          (<div>
-            < p > {this.props.recipe.name}</p>
-            <img src={this.props.recipe.image_url} alt="" />
-            <ul>
-              {/* {Array.from(this.props.recipe.ingredients).map((ing, id) =>
-                <li key={id}>{ing}</li>
-              )}
-            </ul>
-            <ul>
-              {Array.from(this.props.recipe.directions).map((dir, id) =>
-                <li key={id}>{dir}</li>
-              )} */}
-            </ul>
-          </div>) : ""}
-        
-=======
         {this.props.recipe ? 
           (
             <div className="recipe-item">
@@ -100,7 +82,6 @@ class RecipeDetail extends React.Component {
 
           ) : "" 
         }
->>>>>>> master
       </div>
     );
   }
