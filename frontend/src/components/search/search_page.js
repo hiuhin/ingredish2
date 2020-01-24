@@ -103,6 +103,7 @@ class SearchPage extends React.Component {
             <li>
               <nav>
                 <Link to={`/${recipe._id}`}>{recipe.name}</Link>
+                <br/>
               </nav>
 
               <img src={recipe.image_url} className="recipeimg" alt="" />
