@@ -56,6 +56,7 @@ class SearchPage extends React.Component {
   }
 
   render() {
+    this.props.closeModal();
     // console.log("recipes", this.props.recipes);
     // console.log("searchTerm", this.state.searchval);
     return (
