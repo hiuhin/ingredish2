@@ -15,7 +15,7 @@ export default function (state = {}, action) {
         // ...state,
         // isAuthenticated: !!action.currentUser,
     case RECEIVE_RECIPE:
-      debugger;
+      // debugger;
       return action.recipe;
     default:
       return state;

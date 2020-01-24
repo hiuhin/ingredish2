@@ -47,8 +47,7 @@ class RecipeDetail extends React.Component {
         <nav>
           <Link to="/search"> Back to Search</Link>
         </nav>
-        {this.props.recipe ? 
-          (
+        {
             <div className="recipe-item">
               <img src={showBg} className="show-bg" />
               <div className="recipe-left"></div>
@@ -80,7 +79,7 @@ class RecipeDetail extends React.Component {
               <div className="recipe-inner"></div>
             </div>
 
-          ) : "" 
+          
         }
       </div>
     );

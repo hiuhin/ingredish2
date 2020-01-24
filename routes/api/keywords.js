@@ -11,13 +11,23 @@ require("./../../config/passport")(passport);
 
 const jwt = require("jsonwebtoken");
 
-router.get("/", (req, res) => {
-  Keyword.find()
-    .sort({ date: -1 })
-    .then(keyword => res.json(keyword))
-    .catch(err =>
-      res.status(404).json({ nokeywordssfound: "No Keywords found" })
-    );
+router.get("/", async (req, res) => {
+  try {
+    const keyword = await (Keyword.find({
+      name: req.query.search
+    }).count() > 0);
+    console.log("keyword", keyword);
+    // if (keyword.length === 0) return res.status(400).send({ msg: "No Recipe for this ingredient yet" });
+      // res.json(keyword);
+    return keyword;
+  }
+  catch (err) {
+    console.log(err.message);
+    res.status(500).send("Nooo")
+  }
+
+      // res.status(400).send({ name: err. })
+    // );
 });
 
 // router.get("/user/:user_id", (req, res) => {
@@ -37,11 +47,9 @@ router.get("/", (req, res) => {
 
 router.post(
   "/",
-  // passport.authenticate("jwt", { session: false }),
   (req, res) => {
     req.body.instructions = {};
     const newKeyword = new Keyword({
-      // users: [req.user.id],
       name: req.body.name
     });
 
