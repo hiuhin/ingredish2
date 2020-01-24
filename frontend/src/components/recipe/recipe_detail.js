@@ -12,9 +12,9 @@ class RecipeDetail extends React.Component {
     // this.addSearch = this.addSearch.bind(this);
   }
 
-  // componentDidMount() {
-   
-  // }
+  componentDidMount() {
+   this.props.fetchRecipe(this.props.recipeId);
+   }
 
   render() {
     // let recipe = Recipe.find(this.props.recipeId);

@@ -92,7 +92,7 @@ class SearchPage extends React.Component {
         </ul>
             </div>
 
-            <ul>
+            <ul id='search-results'>
               {this.props.recipes.map((recipe, idx) => (
                 <div>
                   <nav>
