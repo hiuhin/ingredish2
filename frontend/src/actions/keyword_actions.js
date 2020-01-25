@@ -31,7 +31,7 @@ export const createKeyword = keyword => dispatch => {
 };
 
 export async function fetchKeyword(keyword) {
-    debugger;
+    // debugger;
     let result = await APIUtil.fetchKeyword(keyword);
   // console.log("res", result);
   return result;
