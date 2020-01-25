@@ -26,15 +26,14 @@ router.get(
   }
 );
 
-router.patch("/:recipe_id/", async (req, res,next) => {
-console.log("comment", req.query.search);
+router.patch("/:recipe_id/", async (req, res) => {
+// console.log("comment", req.query.search);
   try {
-    let value = req.query.search;
-    let recipe = await Recipe.findOneAndUpdate(
+    let recipe = await (Recipe.findOneAndUpdate(
       { _id: req.params.recipe_id },
-      { $push: { comments: value } }
-    );
-    console.log(recipe.comments);
+      { $push: { comments: req.query.search } },
+      { upsert: true, new: true }
+    ).exec());
     res.json(recipe);
   }
   catch (err) {

@@ -8,22 +8,16 @@ import showBg from "../../images/cuttingboard.jpeg";
 class RecipeDetail extends React.Component {
   constructor(props) {
     super(props);
-    // this.state.comments = this.props.recipes[this.props.recipeId].comments;
-    // this.props.fetchRecipe(this.props.recipeId);
     this.state = {
       comment: "",
-      recipe:  this.props.fetchRecipe(this.props.recipeId)
+      recipe: this.props.fetchRecipe(this.props.recipeId),
+      commentsToggle: true
     }
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.props.fetchRecipe(this.props.recipeId);
+    // this.props.fetchRecipe(this.props.match.params.recipeId);
+    
   }
 
-  componentDidMount() {
-    this.props.addComment(
-      this.props.recipeId,
-      this.state.comment
-    );
-  }
   update(field) {
     return (e =>
       this.setState({
@@ -32,14 +26,14 @@ class RecipeDetail extends React.Component {
   }
   async getComments() {
     try {
-     console.log("recipecommbef", this.state.recipe.data);
+    //  console.log("recipecommbef", this.state.recipe.data);
       let recipe = await this.props.addComment(
         this.props.recipeId,
         this.state.comment
       );
       this.setState({ recipe: recipe });
-      debugger;
-      console.log("recipecomm", (this.state.recipe.data));
+      // debugger;
+      // console.log("recipecomm", (this.state.recipe.data));
     }
     catch(err){
       console.log(err.message);
@@ -49,14 +43,13 @@ class RecipeDetail extends React.Component {
   handleSubmit() {
     this.getComments();
       this.setState({
-        comment:""
+        comment: "",
+      commentsToggle: false
       })
     
   }
   render() {
     const { recipes, recipeId } = this.props;
-    // recipes[recipeId].comments.push("hello");
-    // console.log('comments',recipes[recipeId].comments.length);
     return (
       <div>
         <nav className="backtosearch">
@@ -92,6 +85,24 @@ class RecipeDetail extends React.Component {
                     >{`${key}: ${recipes[recipeId].directions[key]}`}</li>
                   ))}
                 </div>
+                <h1>Comments:</h1>
+                {this.state.commentsToggle ? (
+                  <ul>
+                    {recipes[recipeId].comments.length != 0
+                      ? recipes[recipeId].comments.map((comment, id) => (
+                          <li>{comment}</li>
+                        ))
+                      : null}
+                  </ul>
+                ) : (
+                  <ul>
+                    {this.state.recipe.data
+                      ? this.state.recipe.data.comments.map((comment, id) => (
+                          <li>{comment}</li>
+                        ))
+                      : null}
+                  </ul>
+                )}
                 <form onSubmit={this.handleSubmit}>
                   <label htmlFor="">
                     Comments:
@@ -103,20 +114,6 @@ class RecipeDetail extends React.Component {
                   </label>
                   <button type="submit">Add Comment</button>
                 </form>
-                {/* <ul>
-                  {recipes[recipeId].comments.length != 0 ? (
-                    recipes[recipeId].comments.map((comment, id) => 
-                      <li>{comment}</li>
-                    )
-                  ):null}
-                </ul> */}
-                <ul>
-                  {this.state.recipe.data
-                    ? this.state.recipe.data.comments.map((comment, id) => (
-                        <li>{comment}</li>
-                      ))
-                    : null}
-                </ul>
               </div>
               <div></div>
             </div>

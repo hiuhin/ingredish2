@@ -9,6 +9,6 @@ export const fetchRecipe = (id) => {
 };
 
 export const updateRecipe = (id, comment) => {
-    debugger;
+    // debugger;
     return axios.patch(`/api/recipes/${id}/?search=${comment}`);
 }
