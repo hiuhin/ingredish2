@@ -24,7 +24,7 @@ class RecipeDetail extends React.Component {
     return (
       <div>
         <nav className="backtosearch">
-          <Link to={{ pathname: "/search", search: "hello" }}> Back to Search</Link>
+          <Link to={{ pathname: "/search" }}> Back to Search</Link>
         </nav>
         {recipes[recipeId] ?
           (
