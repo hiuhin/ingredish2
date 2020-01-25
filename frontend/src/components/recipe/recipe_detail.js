@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import showBg from "../../images/cuttingboard.jpeg";
 // import Recipe from './../../../../models/Recipe';
 
@@ -13,19 +13,18 @@ class RecipeDetail extends React.Component {
     // this.addSearch = this.addSearch.bind(this);
   }
 
-  componentDidMount() {
-    this.props.fetchRecipe(this.props.recipeId);
+  // componentDidMount() {
+  //   this.props.fetchRecipe(this.props.recipeId);
 
-  }
+  // }
 
   render() {
     const { recipes, recipeId } = this.props;
-    // let recipe = Recipe.find(this.props.recipeId);
-    console.log('recipedetail', recipes[recipeId]);
+    const backUrl = "/detail";
     return (
       <div>
-        <nav>
-          <Link to="/search"> Back to Search</Link>
+        <nav className="backtosearch">
+          <Link to={{ pathname: "/search", search: "hello" }}> Back to Search</Link>
         </nav>
         {recipes[recipeId] ?
           (
@@ -68,4 +67,4 @@ class RecipeDetail extends React.Component {
 }
 
 
-export default RecipeDetail;
+export default withRouter(RecipeDetail);

@@ -11,43 +11,79 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { fetchKeyword } from "./../../actions/keyword_actions";
 
 class SearchPage extends React.Component {
+ 
   constructor(props) {
     super(props);
     this.state = {
       searchTerm: [],
       searchVal: "",
-      keywordValid: true
+      keywordValid: true,
+      alreadyEnteredIng: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addSearch = this.addSearch.bind(this);
     this.deleteIng = this.deleteIng.bind(this);
-     
-  }
 
-  componentDidMount() {
     this.props.fetchRecipes(this.state.searchTerm);
+    // this.props.fetchRecipes(retainSearch);
+    // var retainSearch;
   }
 
+  // componentDidMount() {
+  //   if (!this.props.location.search) {
+  //     this.props.fetchRecipes(this.state.searchTerm);
+  //   }
+  //   // else {
+  //   //   this.props.fetchRecipes(this.retainSearch);
+  //   // }
+  // }
+
+  // componentDidUpdate(prevProps) {
+  //   // if(prevProps.)
+  //   console.log("previous",prevProps.location);
+  // }
   update(field) {
     return e => {
-      //   this.state.searchTerm = [...this.state.searchTerm, e.target.value];
       this.setState({ [field]: e.target.value });
     };
   }
 
-  addSearch() {
-    // debugger;
+
+  async getKeywordValid() {
+    try {
+      let search = this.state.searchVal;
+      let res = await fetchKeyword(this.state.searchVal);
+
+      if (res.data && !this.state.searchTerm.some(ing => ing === search)) {
+        this.setState({
+          searchTerm: [...this.state.searchTerm, search],
+          keywordValid: true,
+          alreadyEnteredIng: false
+        });
+      }
+        else if (this.state.searchTerm.some(ing => ing === search)) {
+          this.setState({
+            alreadyEnteredIng: true,
+            keywordValid: true
+          });  
+        }
+       else {
+        this.setState({
+          keywordValid: false,
+        });
+      }
+    }
+      catch(err){
+      console.log(err.message);
+      }
     
-    console.log("valid", fetchKeyword(this.state.searchVal));
-    this.setState({
-      searchTerm: [...this.state.searchTerm, this.state.searchVal]
-    });
- 
+  }
+  addSearch() {
+    this.getKeywordValid();
     this.setState({ searchVal: "" });
   }
 
   deleteIng(value) {
-    // debugger;
     var array = Array.from(this.state.searchTerm);
     var index = array.indexOf(value);
     if (index !== -1) {
@@ -57,8 +93,7 @@ class SearchPage extends React.Component {
   }
 
   handleSubmit() {
-    // debugger;
-    
+    this.retainSearch = this.state.searchTerm;
     this.props.fetchRecipes(this.state.searchTerm).then(() =>
       this.setState({
         searchTerm: []
@@ -68,11 +103,22 @@ class SearchPage extends React.Component {
 
   render() {
     this.props.closeModal();
-    // console.log("path", this.props.match.path);
-    // console.log("staterecipes", this.state.recipes);
+console.log('props',this.props);    
+
     return (
       <div>
         <div className="searchbackground">
+          {!this.state.keywordValid ? (
+            <h1>
+              {" "}
+              Sorry!, No recipe yet for this ingredient, please enter some other
+              ingredient
+            </h1>
+          ) : null}
+          {this.state.alreadyEnteredIng && this.state.keywordValid ? (
+            <h1> Already entered, please enter different ingredient</h1>
+          ) : null}
+
           <form className="searchform" onSubmit={this.handleSubmit}>
             <div className="searchbar">
               <FontAwesomeIcon icon={faSearch} />
@@ -109,23 +155,23 @@ class SearchPage extends React.Component {
         </div>
 
         <ul className="recipes">
-          {this.props.match.path != "/" ? 
-            
-            (this.props.recipes.map((recipe, idx) => (
-            <li>
-              <nav>
-                <Link to={`/${recipe._id}`}>{recipe.name}</Link>
-              </nav>
+          {this.props.match.path != "/"
+            ? this.props.recipes.map((recipe, idx) => (
+                <li>
+                  <nav>
+                    <Link to={`/${recipe._id}`}>{recipe.name}</Link>
+                  </nav>
 
-              <img src={recipe.image_url} className="recipeimg" alt="" />
-              {/* <li key={idx}>
+                  <img src={recipe.image_url} className="recipeimg" alt="" />
+                  {/* <li key={idx}>
                 {recipe.keywords.map((ing, id) => (
                   <li key={id}>{ing}</li>
                 ))}
               </li> */}
-              {/* <button>Save</button> */}
-            </li>
-          ))):null}
+                  {/* <button>Save</button> */}
+                </li>
+              ))
+            : null}
         </ul>
       </div>
     );

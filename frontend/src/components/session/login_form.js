@@ -21,7 +21,7 @@ class LoginForm extends React.Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.currentUser === true) {
-      this.props.history.push("/search");
+      this.props.history.push("/search" + this.props.history.location.search);
     }
 
     this.setState({ errors: nextProps.errors });

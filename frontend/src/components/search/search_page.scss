@@ -17,6 +17,15 @@
     background: rgba(0, 0, 0, 0.253);
 }
 
+.searchbackground h1{
+    position: relative;
+    top: 15%;
+    left:25%;
+    color: rgba(230, 8, 8, 0.845);
+    font-weight: bolder;
+    font-size: large;
+}
+
 .searchform {
     display: flex;
     flex-direction: column;
