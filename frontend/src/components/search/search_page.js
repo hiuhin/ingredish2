@@ -37,11 +37,8 @@ class SearchPage extends React.Component {
 
   addSearch() {
     // debugger;
-    fetchKeyword(this.state.searchVal);
-      
-   
-
-    console.log("valid",this.state.searchVal);
+    
+    console.log("valid", fetchKeyword(this.state.searchVal));
     this.setState({
       searchTerm: [...this.state.searchTerm, this.state.searchVal]
     });

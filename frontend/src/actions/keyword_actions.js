@@ -30,10 +30,11 @@ export const createKeyword = keyword => dispatch => {
 //   );
 };
 
-export const fetchKeyword = keyword =>{
-    // debugger;
-    let result = APIUtil.fetchKeyword(keyword);
-    console.log("res",result);
-    return APIUtil.fetchKeyword(keyword);
+export async function fetchKeyword(keyword) {
+    debugger;
+    let result = await APIUtil.fetchKeyword(keyword);
+  // console.log("res", result);
+  return result;
+    
         // .then((res) => console.log("keyact", res.data));  
 };

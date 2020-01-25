@@ -8,6 +8,5 @@ export const createKeyword = (keyword) => {
 };
 
 export const fetchKeyword = (name) => {
-    // debugger;
     return axios.get(`/api/keywords/?search=${name}`);
 };
