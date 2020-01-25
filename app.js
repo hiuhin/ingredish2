@@ -10,7 +10,11 @@ const passport = require("passport");
 const path = require("path");
 
 mongoose
-  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(db, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+  })
   .then(() => console.log("Conneced to MongoDB successfully"))
   .catch(err => console.log(err));
 

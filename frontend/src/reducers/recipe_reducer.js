@@ -6,16 +6,20 @@ import { RECEIVE_ALL_RECIPES, RECEIVE_RECIPE } from "../actions/recipe_actions";
 // };
 
 export default function (state = {}, action) {
-    Object.freeze(state);
+  Object.freeze(state);
+   let newState = {};
     // let nextState;
   switch (action.type) {
  
     case RECEIVE_ALL_RECIPES:
-      let newState = {};
+    //  debugger;
       action.recipes.data.forEach(recipe => (newState[recipe._id] = recipe));
       return newState;
     case RECEIVE_RECIPE:
-      return action.recipe;
+      // debugger;
+      // let newState = {};
+      newState[action.recipe.data._id] = action.recipe;
+      return newState;
     default:
       return state;
   }

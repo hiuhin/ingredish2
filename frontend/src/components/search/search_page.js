@@ -93,7 +93,6 @@ class SearchPage extends React.Component {
   }
 
   handleSubmit() {
-    this.retainSearch = this.state.searchTerm;
     this.props.fetchRecipes(this.state.searchTerm).then(() =>
       this.setState({
         searchTerm: []

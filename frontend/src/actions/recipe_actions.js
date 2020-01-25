@@ -22,6 +22,8 @@ export const receiveRecipe = recipe => {
 }
 
 
+
+
 export const fetchAllRecipes = (search) => dispatch => {
  return( APIUtil.fetchRecipes(search).then(res =>
     dispatch(receiveRecipes(res))))
@@ -29,6 +31,12 @@ export const fetchAllRecipes = (search) => dispatch => {
   
 export const fetchRecipe = (id) => dispatch => {
   return (APIUtil.fetchRecipe(id).then(res => dispatch(receiveRecipes(res))));
+}
+
+export const updateRecipe = (id, comment) => dispatch => {
+  return APIUtil.updateRecipe(id, comment)
+    // .then(res =>dispatch(receiveRecipe(res))
+  // );
 }
     
 

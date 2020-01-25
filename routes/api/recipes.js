@@ -26,11 +26,21 @@ router.get(
   }
 );
 
-router.get("/:recipe_id", (req, res) => {
-    Recipe.find(
-      { _id: req.params.recipe_id }
-    ).then(recipe => res.json(recipe));
-})
+router.patch("/:recipe_id/", async (req, res,next) => {
+console.log("comment", req.query.search);
+  try {
+    let value = req.query.search;
+    let recipe = await Recipe.findOneAndUpdate(
+      { _id: req.params.recipe_id },
+      { $push: { comments: value } }
+    );
+    console.log(recipe.comments);
+    res.json(recipe);
+  }
+  catch (err) {
+    res.send(404).json(err.message);
+  }
+});
 
 // router.get("/user/:user_id", (req, res) => {
 //     Tweet.find({ user: req.params.user_id })
