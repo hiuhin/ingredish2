@@ -13,17 +13,13 @@ const jwt = require("jsonwebtoken");
 
 router.get("/", async (req, res) => {
   try {
-    const keyword = await (Keyword.find({
-      name: req.query.search
-    }).count() > 0);
-    console.log("keyword", keyword);
-    // if (keyword.length === 0) return res.status(400).send({ msg: "No Recipe for this ingredient yet" });
-      // res.json(keyword);
-    return keyword;
-  }
+        const keyword = await ((Keyword.find({
+          name: req.query.search
+        }).count()) ) > 0;
+        res.json(keyword);
+      }
   catch (err) {
-    console.log(err.message);
-    res.status(500).send("Nooo")
+    res.status(500).send(err.message);
   }
 
       // res.status(400).send({ name: err. })

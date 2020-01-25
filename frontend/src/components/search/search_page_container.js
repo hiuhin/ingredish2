@@ -2,14 +2,11 @@ import { connect } from "react-redux";
 import { fetchAllRecipes } from "./../../actions/recipe_actions";
 import SearchPage from "./search_page";
 import { closeModal } from '../../actions/modal_actions';
+import { withRouter } from "react-router-dom";
 
 const mapStateToProps = state => {
-    // debugger;
-    // console.log('here',state);
   return {
-    // errors: state.errors.session
     currentUser: state.session.user,
-    /*recipes: Array.from(state.recipes)*/
     recipes: Object.values(state.recipes)
   };
 };
@@ -21,4 +18,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SearchPage));

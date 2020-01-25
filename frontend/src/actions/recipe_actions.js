@@ -8,7 +8,6 @@ export const RECEIVE_RECIPE = "RECEIVE_RECIPE";
 
 
 export const receiveRecipes = recipes => {
-  // console.log("action",recipes);
   return {
     type: RECEIVE_ALL_RECIPES,
     recipes
@@ -16,7 +15,6 @@ export const receiveRecipes = recipes => {
 };
 
 export const receiveRecipe = recipe => {
-  // debugger;
   return {
     type: RECEIVE_RECIPE,
     recipe
@@ -25,13 +23,11 @@ export const receiveRecipe = recipe => {
 
 
 export const fetchAllRecipes = (search) => dispatch => {
-  // debugger;
  return( APIUtil.fetchRecipes(search).then(res =>
     dispatch(receiveRecipes(res))))
 }
   
 export const fetchRecipe = (id) => dispatch => {
-  // debugger;
   return (APIUtil.fetchRecipe(id).then(res => dispatch(receiveRecipes(res))));
 }
     
