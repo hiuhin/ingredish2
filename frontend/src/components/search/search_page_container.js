@@ -9,7 +9,8 @@ const mapStateToProps = state => {
   return {
     // errors: state.errors.session
     currentUser: state.session.user,
-    recipes: Array.from(state.recipes)
+    /*recipes: Array.from(state.recipes)*/
+    recipes: Object.values(state.recipes)
   };
 };
 

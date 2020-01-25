@@ -2,12 +2,13 @@ import { connect } from "react-redux";
 import { fetchAllRecipes, fetchRecipe } from "./../../actions/recipe_actions";
 import RecipeDetail from "./recipe_detail";
 
-const mapStateToProps = (state, ownProps) => {
-    // debugger;
+const mapStateToProps = (state,ownProps) => {
+    debugger
     return {
         currentUser: state.session.user,
         recipeId: ownProps.match.params.recipeId,
-        recipe: Array.from(state.recipes)
+        /*recipe: Array.from(state.recipes)[0]*/
+        recipes: state.recipes
     };
 };
 
