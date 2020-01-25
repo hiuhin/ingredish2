@@ -15,12 +15,12 @@ export default function (state = {}, action) {
         // ...state,
         // isAuthenticated: !!action.currentUser,
     case RECEIVE_ALL_RECIPES:
-    debugger
+    // debugger
       let newState = {};
       action.recipes.data.forEach(recipe => (newState[recipe._id] = recipe));
       return newState;
     case RECEIVE_RECIPE:
-      debugger;
+      // debugger;
       return action.recipe;
     default:
       return state;

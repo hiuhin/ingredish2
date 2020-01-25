@@ -22,7 +22,7 @@ class SignupForm extends React.Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.signedIn === true) {
-      this.props.history.push("/");
+      this.props.history.push("/search");
     }
 
     this.setState({ errors: nextProps.errors });

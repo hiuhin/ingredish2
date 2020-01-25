@@ -16,7 +16,7 @@ export const receiveRecipes = recipes => {
 };
 
 export const receiveRecipe = recipe => {
-  debugger;
+  // debugger;
   return {
     type: RECEIVE_RECIPE,
     recipe
@@ -32,8 +32,7 @@ export const fetchAllRecipes = (search) => dispatch => {
   
 export const fetchRecipe = (id) => dispatch => {
   // debugger;
-  return (APIUtil.fetchRecipe(id).then(res => console.log('actionsrecipe',res)));
-    // dispatch(receiveRecipes(res))))
+  return (APIUtil.fetchRecipe(id).then(res => dispatch(receiveRecipes(res))));
 }
     
 

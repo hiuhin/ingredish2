@@ -1,65 +1,75 @@
-import React from 'react';
+import React from "react";
 // import Recipe from "./../../../../models/Recipe";
 // import axios from 'axios';
 // import RecipeDetail from './../recipe/recipe_detail';
-import { Link, Route } from 'react-router-dom';
-import './search_page.scss';
+import { Link, Route } from "react-router-dom";
+import "./search_page.scss";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
+import { fetchKeyword } from "./../../actions/keyword_actions";
 
 class SearchPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        searchTerm: [],
-        searchVal: "",
+      searchTerm: [],
+      searchVal: "",
+      keywordValid: true
     };
-      this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.addSearch = this.addSearch.bind(this);
     this.deleteIng = this.deleteIng.bind(this);
-      //  this.props.fetchRecipes(this.state.searchTerm);
+     
   }
 
-    update(field) {
-      
-      return e => {
-        //   this.state.searchTerm = [...this.state.searchTerm, e.target.value];
+  componentDidMount() {
+    this.props.fetchRecipes(this.state.searchTerm);
+  }
+
+  update(field) {
+    return e => {
+      //   this.state.searchTerm = [...this.state.searchTerm, e.target.value];
       this.setState({ [field]: e.target.value });
     };
-    }
+  }
+
+  addSearch() {
+    // debugger;
     
-    addSearch() {
-        // debugger;
-       
-        this.setState({searchTerm: [...this.state.searchTerm, this.state.searchVal] });
-        this.setState({ searchVal: "" });
-        }
-    
+    console.log("valid", fetchKeyword(this.state.searchVal));
+    this.setState({
+      searchTerm: [...this.state.searchTerm, this.state.searchVal]
+    });
+ 
+    this.setState({ searchVal: "" });
+  }
+
   deleteIng(value) {
     // debugger;
     var array = Array.from(this.state.searchTerm);
-    var index = array.indexOf(value)
+    var index = array.indexOf(value);
     if (index !== -1) {
       array.splice(index, 1);
       this.setState({ searchTerm: array });
     }
-      
-    }
+  }
 
   handleSubmit() {
     // debugger;
-    this.props.fetchRecipes(this.state.searchTerm)
-        .then(() => this.setState({
-            searchTerm:[]
-        }));
-        
+    
+    this.props.fetchRecipes(this.state.searchTerm).then(() =>
+      this.setState({
+        searchTerm: []
+      })
+    );
   }
 
   render() {
     this.props.closeModal();
-    // console.log("recipes", this.props.recipes);
-    // console.log("searchTerm", this.state.searchval);
+    // console.log("path", this.props.match.path);
+    // console.log("staterecipes", this.state.recipes);
     return (
       <div>
         <div className="searchbackground">
@@ -87,19 +97,21 @@ class SearchPage extends React.Component {
           <ul>
             {this.state.searchTerm
               ? this.state.searchTerm.map((ing, id) => (
-                    <li>
-                      {ing}
-                      <span onClick={() => this.deleteIng(ing)}>
-                        <FontAwesomeIcon icon={faMinusCircle} />
-                      </span>
-                    </li>
+                  <li>
+                    {ing}
+                    <span onClick={() => this.deleteIng(ing)}>
+                      <FontAwesomeIcon icon={faMinusCircle} />
+                    </span>
+                  </li>
                 ))
-                : null}
-            </ul>
+              : null}
+          </ul>
         </div>
 
         <ul className="recipes">
-          {this.props.recipes.map((recipe, idx) => (
+          {this.props.match.path != "/" ? 
+            
+            (this.props.recipes.map((recipe, idx) => (
             <li>
               <nav>
                 <Link to={`/${recipe._id}`}>{recipe.name}</Link>
@@ -113,9 +125,8 @@ class SearchPage extends React.Component {
               </li> */}
               {/* <button>Save</button> */}
             </li>
-          ))}
+          ))):null}
         </ul>
-
       </div>
     );
   }

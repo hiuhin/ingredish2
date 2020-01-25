@@ -7,6 +7,8 @@ import showBg from "../../images/cuttingboard.jpeg";
 class RecipeDetail extends React.Component {
   constructor(props) {
     super(props);
+    
+    this.props.fetchRecipe(this.props.recipeId);
     // this.handleSubmit = this.handleSubmit.bind(this);
     // this.addSearch = this.addSearch.bind(this);
   }
@@ -21,32 +23,11 @@ class RecipeDetail extends React.Component {
     // let recipe = Recipe.find(this.props.recipeId);
     console.log('recipedetail', recipes[recipeId]);
     return (
-      // <div id="search-detail">
-      //   <nav>
-      //     <Link to="/search"> Back to Search</Link>
-      //   </nav>
-      //   {this.props.recipe ?
-      //     (<div>
-      //       < p > {this.props.recipe.name}</p>
-      //       <img src={this.props.recipe.image_url} alt="" />
-      //       <ul>
-      //         {Array.from(this.props.recipe.ingredients).map((ing, id) =>
-      //           <li key={id}>{ing}</li>
-      //         )}
-      //       </ul>
-      //       <ul>
-      //         {Array.from(this.props.recipe.directions).map((dir, id) =>
-      //           <li key={id}>{dir}</li>
-      //         )}
-      //       </ul>
-      //     </div>) : ""}
-
-      // </div>
       <div>
         <nav>
           <Link to="/search"> Back to Search</Link>
         </nav>
-        {recipes[recipeId] ? 
+        {recipes[recipeId] ?
           (
             <div className="recipe-item">
               <img src={showBg} className="show-bg" />
@@ -79,11 +60,12 @@ class RecipeDetail extends React.Component {
               <div className="recipe-inner"></div>
             </div>
 
-          ) : "" 
-        }
-      </div>
+          
+          ) : ""}
+          </div>
     );
   }
 }
+
 
 export default RecipeDetail;
