@@ -111,19 +111,19 @@ class SearchPage extends React.Component {
 
     return (
       <div>
-        <div className="searchbackground">
-          {!this.state.keywordValid ? (
-            <h1>
-              {" "}
-              Sorry!, No recipe yet for this ingredient, please enter some other
-              ingredient
-            </h1>
-          ) : null}
-          {this.state.alreadyEnteredIng && this.state.keywordValid ? (
-            <h1> Already entered, please enter different ingredient</h1>
-          ) : null}
+        <div className="searchbackground"></div>
+        <div className="searchcontent">
 
-          <form className="searchform" onSubmit={this.handleSubmit}>
+          <form className="searchform">
+            <div className="errors">
+              {!this.state.keywordValid ? (
+                <p>Sorry! This ingredient is not found. Try "cheese"!</p>
+              ) : null}
+              {this.state.alreadyEnteredIng && this.state.keywordValid ? (
+                <p> This ingredient has already been entered, please enter another ingredient.</p>
+              ) : null}
+            </div>
+            
             <div className="searchbar">
               <FontAwesomeIcon icon={faSearch} />
               <input
@@ -133,48 +133,52 @@ class SearchPage extends React.Component {
                 placeholder="Add Ingredients"
                 value={this.state.searchVal}
               />
+
               <div onClick={this.addSearch} className="searchadd">
                 +
               </div>
             </div>
-            <button type="submit">Show Me Recipes!</button>
           </form>
-        </div>
 
-        <div className="searchTerms">
-          <ul>
-            {this.state.searchTerm
-              ? this.state.searchTerm.map((ing, id) => (
+          <div className="searchTerms">
+            <ul>
+              {this.state.searchTerm
+                ? this.state.searchTerm.map((ing, id) => (
+                    <li>
+                      {ing}
+                      <span onClick={() => this.deleteIng(ing)}>
+                        <FontAwesomeIcon icon={faMinusCircle} />
+                      </span>
+                    </li>
+                  ))
+                : null}
+            </ul>
+          </div>
+
+          <button onClick={this.handleSubmit} className="searchbutton">
+            Show Me Recipes!
+          </button>
+
+          <div className="recipes">
+            <ul>
+              {this.props.match.path != "/" ? this.props.recipes.map((recipe, idx) => (
                   <li>
-                    {ing}
-                    <span onClick={() => this.deleteIng(ing)}>
-                      <FontAwesomeIcon icon={faMinusCircle} />
-                    </span>
+                    <Link to={`/${recipe._id}`}>
+                      <img src={recipe.image_url} className="recipeimg" alt="" />
+                    </Link>
+                    <div className="recipeinfo">
+                      <h1>{recipe.name}</h1>
+                      {recipe.keywords.map((ing, id) => (
+                      <li key={id}>{ing}</li>
+                      ))}
+                      <button>Save</button>
+                    </div>
                   </li>
                 ))
               : null}
-          </ul>
+            </ul>
+          </div>
         </div>
-
-        <ul className="recipes">
-          
-             {this.props.recipes.map((recipe, idx) => (
-                <li>
-                  <nav>
-                    <Link to={`/${recipe._id}`}>{recipe.name}</Link>
-                  </nav>
-
-                  <img src={recipe.image_url} className="recipeimg" alt="" />
-                  {/* <li key={idx}>
-                {recipe.keywords.map((ing, id) => (
-                  <li key={id}>{ing}</li>
-                ))}
-              </li> */}
-                  {/* <button>Save</button> */}
-                </li>
-              ))
-            }
-        </ul>
       </div>
     );
   }
