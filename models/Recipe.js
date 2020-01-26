@@ -26,6 +26,9 @@ const RecipeSchema = new Schema({
     nutrition_facts: {
         type: String,
         required:true
+  },
+  comments: {
+      type: [String]
     },
   date: {
     type: Date,

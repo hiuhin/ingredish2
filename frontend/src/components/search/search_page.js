@@ -18,30 +18,17 @@ class SearchPage extends React.Component {
       searchTerm: [],
       searchVal: "",
       keywordValid: true,
-      alreadyEnteredIng: false
+      alreadyEnteredIng: false,
+      SearchRes : false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addSearch = this.addSearch.bind(this);
     this.deleteIng = this.deleteIng.bind(this);
 
     this.props.fetchRecipes(this.state.searchTerm);
-    // this.props.fetchRecipes(retainSearch);
-    // var retainSearch;
   }
 
-  // componentDidMount() {
-  //   if (!this.props.location.search) {
-  //     this.props.fetchRecipes(this.state.searchTerm);
-  //   }
-  //   // else {
-  //   //   this.props.fetchRecipes(this.retainSearch);
-  //   // }
-  // }
-
-  // componentDidUpdate(prevProps) {
-  //   // if(prevProps.)
-  //   console.log("previous",prevProps.location);
-  // }
+ 
   update(field) {
     return e => {
       this.setState({ [field]: e.target.value });
@@ -80,7 +67,10 @@ class SearchPage extends React.Component {
   }
   addSearch() {
     this.getKeywordValid();
-    this.setState({ searchVal: "" });
+    this.setState({
+      searchVal: "",
+      SearchRes: true
+    });
   }
 
   deleteIng(value) {
@@ -91,19 +81,33 @@ class SearchPage extends React.Component {
       this.setState({ searchTerm: array });
     }
   }
+  async returnRecipe() {
+    try {
+      let recipes = await this.props.fetchRecipes(this.state.searchTerm);
+      // console.log("searchRes", recipes.recipes.data.length);
+      
+      if (recipes.recipes.data.length != 0) {
+        (this.setState({
+          SearchRes: true
+        }))
+      }
+      
+    } catch (err) {
+      console.log(err.message);
+    }
+  }
 
   handleSubmit() {
-    this.retainSearch = this.state.searchTerm;
+    // this.returnRecipe();
     this.props.fetchRecipes(this.state.searchTerm).then(() =>
-      this.setState({
-        searchTerm: []
-      })
+    this.setState({
+      searchTerm: []
+    })
     );
   }
 
   render() {
     this.props.closeModal();
-console.log('props',this.props);    
 
     return (
       <div>
@@ -127,8 +131,6 @@ console.log('props',this.props);
                 type="text"
                 onChange={this.update("searchVal")}
                 placeholder="Add Ingredients"
-                // onDoubleClick={this.addSearch}
-
                 value={this.state.searchVal}
               />
               <div onClick={this.addSearch} className="searchadd">
@@ -155,8 +157,8 @@ console.log('props',this.props);
         </div>
 
         <ul className="recipes">
-          {this.props.match.path != "/"
-            ? this.props.recipes.map((recipe, idx) => (
+          
+             {this.props.recipes.map((recipe, idx) => (
                 <li>
                   <nav>
                     <Link to={`/${recipe._id}`}>{recipe.name}</Link>
@@ -171,7 +173,7 @@ console.log('props',this.props);
                   {/* <button>Save</button> */}
                 </li>
               ))
-            : null}
+            }
         </ul>
       </div>
     );
