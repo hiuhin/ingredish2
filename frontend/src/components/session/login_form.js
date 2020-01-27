@@ -83,7 +83,7 @@ class LoginForm extends React.Component {
                 placeholder="Password"
               />
               
-              <div /><img src={egg} className="submit" onClick={this.handleSubmit} width="65px" height="65px" /></div>
+              <div /><img alt="login-submit" src={egg} className="submit" onClick={this.handleSubmit} width="65px" height="65px" /></div>
       
           </form>
         </div>

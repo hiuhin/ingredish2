@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import {
-  fetchAllRecipes,
+  // fetchAllRecipes,
   fetchRecipe,
   updateRecipe
 } from "./../../actions/recipe_actions";
