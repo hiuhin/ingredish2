@@ -52,9 +52,7 @@ class RecipeDetail extends React.Component {
     const { recipes, recipeId } = this.props;
     return (
       <div>
-        <nav className="backtosearch">
-          <Link to={{ pathname: "/search" }}> Back to Search</Link>
-        </nav>
+
         {recipes[recipeId] ? (
           <div className="recipe-item">
             <img src={showBg} className="show-bg" alt="bg-img" />
@@ -86,35 +84,51 @@ class RecipeDetail extends React.Component {
                     >{`${key}: ${recipes[recipeId].directions[key]}`}</li>
                   ))}
                 </div>
-                <h1>Comments:</h1>
-                {this.state.commentsToggle ? (
-                  <ul>
-                    {recipes[recipeId].comments.length !== 0
-                      ? recipes[recipeId].comments.map((comment, id) => (
-                          <li key={`comment-${id}`}>{comment}</li>
-                        ))
-                      : null}
-                  </ul>
-                ) : (
-                  <ul>
-                    {this.state.recipe.data
-                      ? this.state.recipe.data.comments.map((comment, id) => (
-                          <li>{comment}</li>
-                        ))
-                      : null}
-                  </ul>
-                )}
-                <form onSubmit={this.handleSubmit}>
-                  <label htmlFor="">
-                    Comments:
-                    <input
-                      type="textarea"
-                      value={this.state.comment}
-                      onChange={this.update("comment")}
-                    />
-                  </label>
-                  <button type="submit">Add Comment</button>
-                </form>
+                <br/>
+                <br/>
+
+
+                <div className="comments-box">
+                  <h1 className="comments">Comments</h1>
+                  {this.state.commentsToggle ? (
+                    <ul>
+                      {recipes[recipeId].comments.length !== 0
+                        ? recipes[recipeId].comments.map((comment, id) => (
+                            <li>* {comment}</li>
+                          ))
+                        : null}
+                    </ul>
+                  ) : (
+                    <ul>
+                      {this.state.recipe.data
+                        ? this.state.recipe.data.comments.map((comment, id) => (
+                            <li>* {comment}</li>
+                          ))
+                        : null}
+                    </ul>
+
+                  )}
+                  <form onSubmit={this.handleSubmit}>
+                    <label className="comment-text" htmlFor="">
+                      Your comment:    
+                      <input
+                        className="comment-input"
+                        type="textarea"
+                        value={this.state.comment}
+                        placeholder="Leave a comment"
+                        onChange={this.update("comment")} required
+                      />
+                    </label>
+                    <button className="comment-button" type="submit">+</button>
+                  </form>
+                </div>
+                
+              <div className="backtosearch-box">
+                <nav className="backtosearch">
+                  <Link className="backtosearch-text" to={{ pathname: "/search" }}> Back to Search</Link>
+                </nav>
+              </div>
+
               </div>
               <div></div>
             </div>
@@ -123,6 +137,7 @@ class RecipeDetail extends React.Component {
         ) : (
           ""
         )}
+
       </div>
     );
   }
