@@ -32,12 +32,12 @@ class RecipeItem extends React.Component {
     render() {
         return (
           <div className="recipe-item">
-            <img src={showBg} className="show-bg"/>
+            <img src={showBg} className="show-bg" alt="bg_img"/>
             <div className="recipe-left"></div>
             <div className="recipe-center">
               <div></div>
               <div>
-                <img className="recipe-img" src={this.state.image_url} width="100%" />
+                <img className="recipe-img" src={this.state.image_url} width="100%" alt="recipe_img"/>
                 <div className="recipe-name">{this.state.name}</div>
                 <div className="recipe-nutrition">{this.state.nutrition_facts}</div>
                 <div className="ingredients">Ingredients</div>

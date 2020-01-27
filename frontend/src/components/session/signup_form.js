@@ -97,7 +97,7 @@ class SignupForm extends React.Component {
                 onChange={this.update("password2")}
                 placeholder="Confirm Password"
               />
-              <div /><img src={egg} className="submit" onClick={this.handleSubmit} width="65px" height="65px" /></div>
+              <div /><img src={egg} className="submit" onClick={this.handleSubmit} width="65px" height="65px" alt="submit_button" /></div>
 
           </form>
         </div>

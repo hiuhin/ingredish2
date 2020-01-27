@@ -55,7 +55,7 @@ class RecipeDetail extends React.Component {
 
         {recipes[recipeId] ? (
           <div className="recipe-item">
-            <img src={showBg} className="show-bg" />
+            <img src={showBg} className="show-bg" alt="bg-img" />
             <div className="recipe-left"></div>
             <div className="recipe-center">
               <div></div>
@@ -64,6 +64,7 @@ class RecipeDetail extends React.Component {
                   className="recipe-img"
                   src={recipes[recipeId].image_url}
                   width="100%"
+                  alt="recipe-img"
                 />
                 <div className="recipe-name">{recipes[recipeId].name}</div>
                 <div className="recipe-nutrition">
@@ -79,7 +80,7 @@ class RecipeDetail extends React.Component {
                 <div className="recipe-directions">
                   {Object.keys(recipes[recipeId].directions).map((key, i) => (
                     <li
-                      key={key}
+                      key={`dir-${key}`}
                     >{`${key}: ${recipes[recipeId].directions[key]}`}</li>
                   ))}
                 </div>
@@ -91,7 +92,7 @@ class RecipeDetail extends React.Component {
                   <h1 className="comments">Comments</h1>
                   {this.state.commentsToggle ? (
                     <ul>
-                      {recipes[recipeId].comments.length != 0
+                      {recipes[recipeId].comments.length !== 0
                         ? recipes[recipeId].comments.map((comment, id) => (
                             <li>* {comment}</li>
                           ))

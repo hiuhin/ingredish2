@@ -2,7 +2,7 @@ import React from "react";
 // import Recipe from "./../../../../models/Recipe";
 // import axios from 'axios';
 // import RecipeDetail from './../recipe/recipe_detail';
-import { Link, Route } from "react-router-dom";
+import { Link/*, Route*/ } from "react-router-dom";
 import "./search_page.scss";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
@@ -86,7 +86,7 @@ class SearchPage extends React.Component {
       let recipes = await this.props.fetchRecipes(this.state.searchTerm);
       // console.log("searchRes", recipes.recipes.data.length);
       
-      if (recipes.recipes.data.length != 0) {
+      if (recipes.recipes.data.length !== 0) {
         (this.setState({
           SearchRes: true
         }))
@@ -144,7 +144,7 @@ class SearchPage extends React.Component {
             <ul>
               {this.state.searchTerm
                 ? this.state.searchTerm.map((ing, id) => (
-                    <li>
+                    <li key={`term-${id}`}>
                       {ing}
                       <span onClick={() => this.deleteIng(ing)}>
                         <FontAwesomeIcon icon={faMinusCircle} />
@@ -161,10 +161,10 @@ class SearchPage extends React.Component {
 
           <div className="recipes">
             <ul>
-              {this.props.match.path != "/" ? this.props.recipes.map((recipe, idx) => (
-                  <li>
+              {this.props.match.path !== "/" ? this.props.recipes.map((recipe, idx) => (
+                  <div className="searched_recipe_items" key={`recipe-${idx}`}>
                     <Link to={`/${recipe._id}`}>
-                      <img src={recipe.image_url} className="recipeimg" alt="" />
+                      <img src={recipe.image_url} className="recipeimg" alt="recipe" />
                     </Link>
                     <div className="recipeinfo">
                       <h1>{recipe.name}</h1>
@@ -173,7 +173,7 @@ class SearchPage extends React.Component {
                       ))}
                       <button>Save</button>
                     </div>
-                  </li>
+                  </div>
                 ))
               : null}
             </ul>
