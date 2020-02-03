@@ -120,7 +120,7 @@ class SearchPage extends React.Component {
                 <p>Sorry! This ingredient is not found. Try "cheese"!</p>
               ) : null}
               {this.state.alreadyEnteredIng && this.state.keywordValid ? (
-                <p> This ingredient has already been entered, please enter another ingredient.</p>
+                <p> This ingredient has already been entered.</p>
               ) : null}
             </div>
             
@@ -130,7 +130,7 @@ class SearchPage extends React.Component {
                 id="search"
                 type="text"
                 onChange={this.update("searchVal")}
-                placeholder="Add Ingredients"
+                placeholder="Add Ingredients" required
                 value={this.state.searchVal}
               />
 
