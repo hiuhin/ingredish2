@@ -16,3 +16,7 @@ export const updateRecipe = (id, comment) => {
 export const getSavedRecipes = currentUser => {
     return axios.get(`/api/users/${currentUser.id}/recipes`);
 }
+
+export const saveRecipe = (currentUser, recipeId) => {
+    return axios.post(`/api/users/${currentUser.id}/recipes`, recipeId);
+}

@@ -28,7 +28,7 @@ class Saved extends React.Component {
                           className="searched_recipe_items"
                           key={`recipe-${idx}`}
                         >
-                          <Link to={`/${recipe._id}`}>
+                          <Link to={`/recipe/${recipe._id}`}>
                             <img
                               src={recipe.image_url}
                               className="recipeimg"

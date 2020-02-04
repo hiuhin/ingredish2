@@ -24,6 +24,7 @@ class SearchPage extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addSearch = this.addSearch.bind(this);
     this.deleteIng = this.deleteIng.bind(this);
+    this.saveRecipe = this.saveRecipe.bind(this);
 
     this.props.fetchRecipes(this.state.searchTerm);
   }
@@ -106,6 +107,10 @@ class SearchPage extends React.Component {
     );
   }
 
+  saveRecipe(recipeId) {
+    this.props.saveRecipe(this.props.currentUser, recipeId);
+  }
+
   render() {
     this.props.closeModal();
 
@@ -163,7 +168,7 @@ class SearchPage extends React.Component {
             <ul>
               {this.props.match.path !== "/" ? this.props.recipes.map((recipe, idx) => (
                   <div className="searched_recipe_items" key={`recipe-${idx}`}>
-                    <Link to={`/${recipe._id}`}>
+                    <Link to={`/recipe/${recipe._id}`}>
                       <img src={recipe.image_url} className="recipeimg" alt="recipe" />
                     </Link>
                     <div className="recipeinfo">
@@ -171,7 +176,7 @@ class SearchPage extends React.Component {
                       {recipe.keywords.map((ing, id) => (
                       <li key={id}>{ing}</li>
                       ))}
-                      <button>Save</button>
+                      <button id={recipe.id} type="submit" onSubmit={this.saveRecipe(recipe._id)}>Save</button>
                     </div>
                   </div>
                 ))

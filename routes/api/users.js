@@ -125,4 +125,11 @@ router.get("/:id/recipes", (req, res) => {
     })
 });
 
+router.post("/:id/recipes", (req, res) => {
+  console.log(Object.keys(req.body)[0])
+  User.update(
+    { _id: req.params.id },
+    { $push: { saved_recipes: req.recipeId }}
+  )
+})
 module.exports = router;

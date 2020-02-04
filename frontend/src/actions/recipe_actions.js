@@ -46,3 +46,11 @@ export const getSavedRecipes = currentUser => dispatch => (
       recipes
     }))
 )
+
+export const saveRecipe = (currentUser, recipeId) => dispatch => (
+  APIUtil.saveRecipe(currentUser, recipeId)
+    .then(recipes => dispatch({
+      type: "RECEIVE_SAVED_RECIPES",
+      recipes
+    }))
+)
