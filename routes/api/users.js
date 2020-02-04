@@ -118,9 +118,10 @@ router.get(
 router.get("/:id/recipes", (req, res) => {
   User.findById(req.params.id)
     .then(user => {
-      user.saved_recipes.forEach(recipe => {
-        console.log(recipe)
-      })
+      Recipe.find({_id: {$in: user.saved_recipes}})
+          .then(objects => {
+            res.json(objects)
+          })
     })
 });
 

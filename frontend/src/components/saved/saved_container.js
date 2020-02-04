@@ -5,10 +5,10 @@ import {
 import Saved from "./saved";
 
 const mSTP = state => {
-    debugger
+    // debugger
     return {
         currentUser: state.session.user,
-        savedRecipes: Object.keys(state.saved_recipes)
+        savedRecipes: Object.values(state.saved_recipes)
     };
 };
 

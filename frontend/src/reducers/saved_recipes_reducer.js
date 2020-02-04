@@ -5,9 +5,9 @@ export default function(state = {}, action) {
   switch (action.type) {
 
     case "RECEIVE_SAVED_RECIPES":
-    debugger
-      action.recipes.data.forEach(recipeId => {
-        newState[recipeId] = recipeId;
+    // debugger
+      action.recipes.data.forEach(recipe => {
+        newState[recipe._id] = recipe;
       });
       return newState;
 
