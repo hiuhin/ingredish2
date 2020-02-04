@@ -49,6 +49,11 @@ class Saved extends React.Component {
               </div>
             ))}
           </ul>
+                        <div className="backtosearch-box">
+                <nav className="backtosearch">
+                  <Link className="backtosearch-text" to={{ pathname: "/search" }}>Back to Search</Link>
+                </nav>
+              </div>
         </div>
       );
     }

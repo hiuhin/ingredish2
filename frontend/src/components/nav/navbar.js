@@ -50,15 +50,12 @@ class NavBar extends React.Component {
             </div>
             <div className={this.state.menu}>
               <div className="menu-buttons">
-                <button onClick={this.logoutUser}>
-                  Logout
-                </button>
+                <button onClick={this.logoutUser}>Logout</button>
               </div>
             </div>
             <div className="right-links">
-              <button onClick={this.logoutUser}>
-                Logout
-              </button>
+              <Link to="/favorites">Favorites</Link>
+              <button onClick={this.logoutUser}>Logout</button>
             </div>
           </div>
         </div>
@@ -85,7 +82,7 @@ class NavBar extends React.Component {
               </div>
             </div>
             {/* {this.getLinks()} */}
-            <div className="right-links">
+            <div className="right-links"> 
               <button onClick={() => this.props.openModal("signup")}>
                 Signup
               </button>
