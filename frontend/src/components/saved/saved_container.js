@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import {
-    getSavedRecipes
+    getSavedRecipes,
+    removeSavedRecipe
 } from "../../actions/recipe_actions.js"
 import Saved from "./saved";
 
@@ -14,7 +15,9 @@ const mSTP = state => {
 
 const mDTP = dispatch => {
     return {
-        getSavedRecipes: currentUser => dispatch(getSavedRecipes(currentUser))
+      getSavedRecipes: currentUser => dispatch(getSavedRecipes(currentUser)),
+      removeSavedRecipe: (currentUser, recipeId) =>
+        dispatch(removeSavedRecipe(currentUser, recipeId))
     };
 };
 

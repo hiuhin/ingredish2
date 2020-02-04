@@ -126,10 +126,28 @@ router.get("/:id/recipes", (req, res) => {
 });
 
 router.post("/:id/recipes", (req, res) => {
-  console.log(Object.keys(req.body)[0])
-  User.update(
-    { _id: req.params.id },
-    { $push: { saved_recipes: req.recipeId }}
-  )
+  User.findById(req.params.id)
+    .then(user => {
+      user.saved_recipes.push(Object.keys(req.body)[0]);
+      user.save();
+      Recipe.find({ _id: { $in: user.saved_recipes } }).then(objects => {
+        res.json(objects);
+      });
+    })
 })
+
+router.delete("/:userId/:recipeId", (req, res) => {
+  User.findById(req.params.userId)
+    .then(user => {
+      user.saved_recipes = user.saved_recipes.filter(recipe => (
+        recipe != req.params.recipeId
+        )
+      )
+      user.save();
+      Recipe.find({ _id: { $in: user.saved_recipes } }).then(objects => {
+        res.json(objects);
+      });
+    })
+})
+
 module.exports = router;

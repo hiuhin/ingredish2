@@ -39,18 +39,26 @@ export const updateRecipe = (id, comment) => dispatch => {
   // );
 }
     
-export const getSavedRecipes = currentUser => dispatch => (
-  APIUtil.getSavedRecipes(currentUser)
-    .then(recipes => dispatch({
+export const getSavedRecipes = currentUser => dispatch =>
+  APIUtil.getSavedRecipes(currentUser).then(recipes =>
+    dispatch({
       type: "RECEIVE_SAVED_RECIPES",
       recipes
-    }))
-)
+    })
+  );
 
-export const saveRecipe = (currentUser, recipeId) => dispatch => (
-  APIUtil.saveRecipe(currentUser, recipeId)
-    .then(recipes => dispatch({
+export const saveRecipe = (currentUser, recipeId) => dispatch =>
+  APIUtil.saveRecipe(currentUser, recipeId).then(recipes =>
+    dispatch({
       type: "RECEIVE_SAVED_RECIPES",
       recipes
-    }))
-)
+    })
+  );
+
+export const removeSavedRecipe = (currentUser, recipeId) => dispatch =>
+  APIUtil.removeSavedRecipe(currentUser, recipeId).then(recipes =>
+    dispatch({
+      type: "RECEIVE_SAVED_RECIPES",
+      recipes
+    })
+  );

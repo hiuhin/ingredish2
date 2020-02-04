@@ -20,3 +20,7 @@ export const getSavedRecipes = currentUser => {
 export const saveRecipe = (currentUser, recipeId) => {
     return axios.post(`/api/users/${currentUser.id}/recipes`, recipeId);
 }
+
+export const removeSavedRecipe = (currentUser, recipeId) => {
+    return axios.delete(`/api/users/${currentUser.id}/${recipeId}`);
+}

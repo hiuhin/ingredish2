@@ -176,7 +176,7 @@ class SearchPage extends React.Component {
                       {recipe.keywords.map((ing, id) => (
                       <li key={id}>{ing}</li>
                       ))}
-                      <button id={recipe.id} type="submit" onSubmit={this.saveRecipe(recipe._id)}>Save</button>
+                      <button id={recipe.id} type="button" onClick={() => this.saveRecipe(recipe._id)}>Save</button>
                     </div>
                   </div>
                 ))
