@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { fetchAllRecipes } from "./../../actions/recipe_actions";
+import { fetchAllRecipes, saveRecipe } from "./../../actions/recipe_actions";
 import SearchPage from "./search_page";
 import { closeModal } from '../../actions/modal_actions';
 import { withRouter } from "react-router-dom";
@@ -14,7 +14,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchRecipes: (search) => dispatch(fetchAllRecipes(search)),
-    closeModal: () => dispatch(closeModal())
+    closeModal: () => dispatch(closeModal()),
+    saveRecipe: (currentUser, recipeId) => dispatch(saveRecipe(currentUser, recipeId))
   };
 };
 

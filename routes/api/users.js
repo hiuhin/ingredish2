@@ -9,6 +9,8 @@ const User = require("../../models/User");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
+const mongoose = require("mongoose");
+
 
 router.get("/", (req, res) => res.json({ msg: "This is the users route" }));
 
@@ -112,5 +114,40 @@ router.get(
     });
   }
 );
+
+router.get("/:id/recipes", (req, res) => {
+  User.findById(req.params.id)
+    .then(user => {
+      Recipe.find({_id: {$in: user.saved_recipes}})
+          .then(objects => {
+            res.json(objects)
+          })
+    })
+});
+
+router.post("/:id/recipes", (req, res) => {
+  User.findById(req.params.id)
+    .then(user => {
+      user.saved_recipes.push(Object.keys(req.body)[0]);
+      user.save();
+      Recipe.find({ _id: { $in: user.saved_recipes } }).then(objects => {
+        res.json(objects);
+      });
+    })
+})
+
+router.delete("/:userId/:recipeId", (req, res) => {
+  User.findById(req.params.userId)
+    .then(user => {
+      user.saved_recipes = user.saved_recipes.filter(recipe => (
+        recipe != req.params.recipeId
+        )
+      )
+      user.save();
+      Recipe.find({ _id: { $in: user.saved_recipes }}).then(objects => {
+        res.json(objects);
+      });
+    })
+})
 
 module.exports = router;

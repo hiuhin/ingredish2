@@ -8,6 +8,7 @@ import SearchPageContainer from "./search/search_page_container";
 import RecipeDetailContainer from './recipe/recipe_detail_container';
 import Modal from "./modal/modal";
 import RecipeItem from "./recipe/recipe_item";
+import SavedContainer from "./saved/saved_container";
 import "../index.css";
 
 const App = () => (
@@ -16,9 +17,14 @@ const App = () => (
     <NavBarContainer />
     <Switch>
       <Route exact path="/test" component={RecipeItem} />
+      <Route exact path="/favorites" component={SavedContainer} />
       <ProtectedRoute exact path="/search" component={SearchPageContainer} />
       <AuthRoute exact path="/" component={MainPage} />
-      <ProtectedRoute exact path="/:recipeId" component={RecipeDetailContainer} />
+      <ProtectedRoute
+        exact
+        path="/recipe/:recipeId"
+        component={RecipeDetailContainer}
+      />
     </Switch>
   </div>
 );

@@ -20,6 +20,7 @@ export default function (state = {}, action) {
       // let newState = {};
       newState[action.recipe.data._id] = action.recipe;
       return newState;
+
     default:
       return state;
   }

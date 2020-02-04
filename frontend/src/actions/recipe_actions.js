@@ -21,9 +21,6 @@ export const receiveRecipe = recipe => {
   }
 }
 
-
-
-
 export const fetchAllRecipes = (search) => dispatch => {
  return( APIUtil.fetchRecipes(search).then(res =>
     dispatch(receiveRecipes(res))))
@@ -35,8 +32,28 @@ export const fetchRecipe = (id) => dispatch => {
 
 export const updateRecipe = (id, comment) => dispatch => {
   return APIUtil.updateRecipe(id, comment)
-    // .then(res =>dispatch(receiveRecipe(res))
-  // );
 }
     
+export const getSavedRecipes = currentUser => dispatch =>
+  APIUtil.getSavedRecipes(currentUser).then(recipes =>
+    dispatch({
+      type: "RECEIVE_SAVED_RECIPES",
+      recipes
+    })
+  );
 
+export const saveRecipe = (currentUser, recipeId) => dispatch =>
+  APIUtil.saveRecipe(currentUser, recipeId).then(recipes =>
+    dispatch({
+      type: "RECEIVE_SAVED_RECIPES",
+      recipes
+    })
+  );
+
+export const removeSavedRecipe = (currentUser, recipeId) => dispatch =>
+  APIUtil.removeSavedRecipe(currentUser, recipeId).then(recipes =>
+    dispatch({
+      type: "RECEIVE_SAVED_RECIPES",
+      recipes
+    })
+  );
