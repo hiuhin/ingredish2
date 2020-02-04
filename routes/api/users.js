@@ -144,7 +144,7 @@ router.delete("/:userId/:recipeId", (req, res) => {
         )
       )
       user.save();
-      Recipe.find({ _id: { $in: user.saved_recipes } }).then(objects => {
+      Recipe.find({ _id: { $in: user.saved_recipes }}).then(objects => {
         res.json(objects);
       });
     })
