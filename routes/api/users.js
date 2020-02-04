@@ -9,6 +9,8 @@ const User = require("../../models/User");
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
 const passport = require("passport");
+const mongoose = require("mongoose");
+
 
 router.get("/", (req, res) => res.json({ msg: "This is the users route" }));
 
@@ -112,5 +114,14 @@ router.get(
     });
   }
 );
+
+router.get("/:id/recipes", (req, res) => {
+  User.findById(req.params.id)
+    .then(user => {
+      user.saved_recipes.forEach(recipe => {
+        console.log(recipe)
+      })
+    })
+});
 
 module.exports = router;

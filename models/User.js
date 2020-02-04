@@ -18,15 +18,18 @@ const UserSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  saved_recipes: [{
-    recipe: {
-      type: Schema.Types.ObjectId,
-      ref: "recipes"
-    },
-    notes: {
-      type: String
-    }
-  }]
+  // saved_recipes: [{
+  //   recipe: {
+  //     type: Schema.Types.ObjectId,
+  //     ref: "recipes"
+  //   },
+  //   notes: {
+  //     type: String
+  //   }
+  // }]
+  saved_recipes: {
+    type: Array
+  }
 });
 
 module.exports = User = mongoose.model("users", UserSchema);

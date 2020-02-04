@@ -39,4 +39,10 @@ export const updateRecipe = (id, comment) => dispatch => {
   // );
 }
     
-
+export const getSavedRecipes = currentUser => dispatch => (
+  APIUtil.getSavedRecipes(currentUser)
+    .then(recipes => dispatch({
+      type: "RECEIVE_SAVED_RECIPES",
+      recipes
+    }))
+)
