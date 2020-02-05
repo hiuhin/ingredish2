@@ -8,11 +8,10 @@ import {
 import RecipeDetail from "./recipe_detail";
 
 const mapStateToProps = (state,ownProps) => {
-  // debugger
     return {
         currentUser: state.session.user,
         recipeId: ownProps.match.params.recipeId,
-        recipes: state.recipes
+        recipe: Object.values(state.recipes)[0]
     };
 };
 

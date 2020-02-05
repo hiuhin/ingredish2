@@ -51,10 +51,10 @@ class RecipeDetail extends React.Component {
     });
   }
   render() {
-    const { recipes, recipeId } = this.props;
+    const { recipe, recipeId } = this.props;
     return (
       <div>
-        {recipes[recipeId] ? (
+        {recipe ? (
           <div className="recipe-item">
             <img src={showBg} className="show-bg" alt="bg-img" />
             <div className="recipe-left"></div>
@@ -63,26 +63,26 @@ class RecipeDetail extends React.Component {
               <div>
                 <img
                   className="recipe-img"
-                  src={recipes[recipeId].image_url}
+                  src={recipe.image_url}
                   width="100%"
                   alt="recipe-img"
                 />
-                <div className="recipe-name">{recipes[recipeId].name}</div>
+                <div className="recipe-name">{recipe.name}</div>
                 <div className="recipe-nutrition">
-                  {recipes[recipeId].nutrition_facts}
+                  {recipe.nutrition_facts}
                 </div>
                 <div className="ingredients">Ingredients</div>
                 <div className="recipe-ingredients">
-                  {recipes[recipeId].ingredients.map((ing, i) => (
+                  {recipe.ingredients.map((ing, i) => (
                     <li key={i}>{ing}</li>
                   ))}
                 </div>
                 <div className="directions">Directions</div>
                 <div className="recipe-directions">
-                  {Object.keys(recipes[recipeId].directions).map((key, i) => (
+                  {Object.keys(recipe.directions).map((key, i) => (
                     <li
                       key={`dir-${key}`}
-                    >{`${key}: ${recipes[recipeId].directions[key]}`}</li>
+                    >{`${key}: ${recipe.directions[key]}`}</li>
                   ))}
                 </div>
                 <br />
@@ -92,16 +92,16 @@ class RecipeDetail extends React.Component {
                   <h1 className="comments">Comments</h1>
                   {this.state.commentsToggle ? (
                     <ul>
-                      {recipes[recipeId].comments.length !== 0
-                        ? recipes[recipeId].comments.map((comment, id) => (
+                      {recipe.comments.length !== 0
+                        ? recipe.comments.map((comment, id) => (
                             <li key={`comments-${id}`}>* {comment}</li>
                           ))
                         : null}
                     </ul>
                   ) : (
                     <ul>
-                      {this.state.recipe.data
-                        ? this.state.recipe.data.comments.map((comment, id) => (
+                      {this.props.recipe
+                        ? this.props.recipe.comments.map((comment, id) => (
                             <li key={`comments-${id}`}>* {comment}</li>
                           ))
                         : null}
