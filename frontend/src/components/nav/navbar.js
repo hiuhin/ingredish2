@@ -35,9 +35,9 @@ class NavBar extends React.Component {
     this.props.logout();
   }
 
-  componentDidMount() {
-    this.props.getSavedRecipes(this.props.currentUser);
-  }
+  // componentDidMount() {
+  //   this.props.getSavedRecipes(this.props.currentUser);
+  // }
   // Selectively render links dependent on whether the user is logged in
 
   render() {
@@ -57,18 +57,21 @@ class NavBar extends React.Component {
               </div>
             </div>
             <div className="right-links">
-              <Link to="/favorites">Favorites</Link>
-              <div>
-                {this.props.savedRecipes.length === 0 ? "" 
-                  : this.props.savedRecipes.length}
-              </div>
+              <Link to="/favorites" className="favorites">
+                <span className="fav-text">Favorites</span>
+                <span className="counter">
+                  {/* {this.props.savedRecipes.length === 0 ? "" 
+                    : this.props.savedRecipes.length} */}
+                  {this.props.savedRecipes.length}
+                </span>
+              </Link>
+
               <button onClick={this.logoutUser}>Logout</button>
             </div>
           </div>
         </div>
       );
-    }
-    else {
+    } else {
       return (
         <div className="navbar">
           <div className="nav-left">
@@ -89,11 +92,13 @@ class NavBar extends React.Component {
               </div>
             </div>
             {/* {this.getLinks()} */}
-            <div className="right-links"> 
+            <div className="right-links">
               <button onClick={() => this.props.openModal("signup")}>
                 Signup
               </button>
-              <button onClick={() => this.props.openModal("login")}>Login</button>
+              <button onClick={() => this.props.openModal("login")}>
+                Login
+              </button>
             </div>
           </div>
         </div>
