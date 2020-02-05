@@ -18,13 +18,10 @@ const App = () => (
     <Switch>
       <Route exact path="/test" component={RecipeItem} />
       <Route exact path="/favorites" component={SavedContainer} />
+      <ProtectedRoute path="/recipe/:recipeId" component={RecipeDetailContainer}
+      />
       <ProtectedRoute exact path="/search" component={SearchPageContainer} />
       <AuthRoute exact path="/" component={MainPage} />
-      <ProtectedRoute
-        exact
-        path="/recipe/:recipeId"
-        component={RecipeDetailContainer}
-      />
     </Switch>
   </div>
 );

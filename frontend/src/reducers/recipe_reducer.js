@@ -18,7 +18,7 @@ export default function (state = {}, action) {
     case RECEIVE_RECIPE:
       // debugger;
       // let newState = {};
-      newState[action.recipe.data._id] = action.recipe;
+      newState[action.recipe.data._id] = action.recipe.data;
       return newState;
 
     default:
