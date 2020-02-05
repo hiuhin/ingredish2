@@ -35,6 +35,9 @@ class NavBar extends React.Component {
     this.props.logout();
   }
 
+  componentDidMount() {
+    this.props.getSavedRecipes(this.props.currentUser);
+  }
   // Selectively render links dependent on whether the user is logged in
 
   render() {
@@ -55,6 +58,10 @@ class NavBar extends React.Component {
             </div>
             <div className="right-links">
               <Link to="/favorites">Favorites</Link>
+              <div>
+                {this.props.savedRecipes.length === 0 ? "" 
+                  : this.props.savedRecipes.length}
+              </div>
               <button onClick={this.logoutUser}>Logout</button>
             </div>
           </div>
