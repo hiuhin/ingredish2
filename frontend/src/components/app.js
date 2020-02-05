@@ -17,9 +17,9 @@ const App = () => (
     <NavBarContainer />
     <Switch>
       <Route exact path="/test" component={RecipeItem} />
-      <ProtectedRoute exact path="/favorites" component={SavedContainer} />
       <ProtectedRoute path="/recipe/:recipeId" component={RecipeDetailContainer}
       />
+      <ProtectedRoute exact path="/favorites" component={SavedContainer} />
       <ProtectedRoute exact path="/search" component={SearchPageContainer} />
       <AuthRoute exact path="/" component={MainPage} />
     </Switch>

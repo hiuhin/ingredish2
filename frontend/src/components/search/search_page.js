@@ -7,7 +7,6 @@ import "./search_page.scss";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { faMinusCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
 import { fetchKeyword } from "./../../actions/keyword_actions";
 
 class SearchPage extends React.Component {
