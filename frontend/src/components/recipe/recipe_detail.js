@@ -51,7 +51,7 @@ class RecipeDetail extends React.Component {
     });
   }
   render() {
-    const { recipe, recipeId } = this.props;
+    const { recipe } = this.props;
     return (
       <div>
         {recipe ? (

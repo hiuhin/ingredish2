@@ -15,8 +15,8 @@ const mSTP = state => {
 
 const mDTP = dispatch => {
     return {
-      getSavedRecipes: currentUser => dispatch(getSavedRecipes(currentUser)),
-      removeSavedRecipe: (currentUser, recipeId) =>
+        getSavedRecipes: currentUser => dispatch(getSavedRecipes(currentUser)),
+        removeSavedRecipe: (currentUser, recipeId) =>
         dispatch(removeSavedRecipe(currentUser, recipeId))
     };
 };
