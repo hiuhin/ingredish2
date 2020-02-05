@@ -129,8 +129,7 @@ class RecipeDetail extends React.Component {
                   <nav className="backtosearch">
                     <Link
                       className="backtosearch-text"
-                      to={{ pathname: "/search" }}
-                    >
+                      to={{ pathname: "/search" }}>
                       Back to Search
                     </Link>
                   </nav>
