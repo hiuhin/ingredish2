@@ -26,6 +26,17 @@ router.get(
   }
 );
 
+// router.get("/", (req, res) => {
+//   res.json({"test": "testing"})
+// })
+
+router.get("/:recipe_id/", (req, res) => {
+  Recipe.findById(req.params.recipe_id)
+    .then(recipe => {
+      res.json(recipe);
+    })
+})
+
 router.patch("/:recipe_id/", async (req, res) => {
 // console.log("comment", req.query.search);
   try {

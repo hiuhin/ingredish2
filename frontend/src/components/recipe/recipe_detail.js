@@ -10,23 +10,27 @@ class RecipeDetail extends React.Component {
     super(props);
     this.state = {
       comment: "",
-      recipe: this.props.fetchRecipe(this.props.recipeId),
+      // recipe: this.props.fetchRecipe(this.props.match.params.recipeId),
+      recipe: this.props.getRecipe(this.props.match.params.recipeId),
       commentsToggle: true
-    }
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
     // this.props.fetchRecipe(this.props.match.params.recipeId);
-    
   }
 
+  // componentWillReceiveProps(newProps) {
+  //   this.props.fetchRecipe(newProps.params.recipeId);
+  // }
+
   update(field) {
-    return (e =>
+    return e =>
       this.setState({
-        [field]:e.target.value
-      }))
+        [field]: e.target.value
+      });
   }
   async getComments() {
     try {
-    //  console.log("recipecommbef", this.state.recipe.data);
+      //  console.log("recipecommbef", this.state.recipe.data);
       let recipe = await this.props.addComment(
         this.props.recipeId,
         this.state.comment
@@ -34,25 +38,22 @@ class RecipeDetail extends React.Component {
       this.setState({ recipe: recipe });
       // debugger;
       // console.log("recipecomm", (this.state.recipe.data));
-    }
-    catch(err){
+    } catch (err) {
       console.log(err.message);
     }
   }
 
   handleSubmit() {
     this.getComments();
-      this.setState({
-        comment: "",
+    this.setState({
+      comment: "",
       commentsToggle: false
-      })
-    
+    });
   }
   render() {
     const { recipes, recipeId } = this.props;
     return (
       <div>
-
         {recipes[recipeId] ? (
           <div className="recipe-item">
             <img src={showBg} className="show-bg" alt="bg-img" />
@@ -84,9 +85,8 @@ class RecipeDetail extends React.Component {
                     >{`${key}: ${recipes[recipeId].directions[key]}`}</li>
                   ))}
                 </div>
-                <br/>
-                <br/>
-
+                <br />
+                <br />
 
                 <div className="comments-box">
                   <h1 className="comments">Comments</h1>
@@ -94,7 +94,7 @@ class RecipeDetail extends React.Component {
                     <ul>
                       {recipes[recipeId].comments.length !== 0
                         ? recipes[recipeId].comments.map((comment, id) => (
-                            <li>* {comment}</li>
+                            <li key={`comments-${id}`}>* {comment}</li>
                           ))
                         : null}
                     </ul>
@@ -102,33 +102,39 @@ class RecipeDetail extends React.Component {
                     <ul>
                       {this.state.recipe.data
                         ? this.state.recipe.data.comments.map((comment, id) => (
-                            <li>* {comment}</li>
+                            <li key={`comments-${id}`}>* {comment}</li>
                           ))
                         : null}
                     </ul>
-
                   )}
                   <form onSubmit={this.handleSubmit}>
                     <label className="comment-text" htmlFor="">
-                      Your comment:    
+                      Your comment:
                       <input
                         className="comment-input"
                         type="textarea"
                         value={this.state.comment}
                         placeholder="Leave a comment"
-                        onChange={this.update("comment")} required
+                        onChange={this.update("comment")}
+                        required
                       />
                     </label>
-                    <button className="comment-button" type="submit">+</button>
+                    <button className="comment-button" type="submit">
+                      +
+                    </button>
                   </form>
                 </div>
-                
-              <div className="backtosearch-box">
-                <nav className="backtosearch">
-                  <Link className="backtosearch-text" to={{ pathname: "/search" }}> Back to Search</Link>
-                </nav>
-              </div>
 
+                <div className="backtosearch-box">
+                  <nav className="backtosearch">
+                    <Link
+                      className="backtosearch-text"
+                      to={{ pathname: "/search" }}
+                    >
+                      Back to Search
+                    </Link>
+                  </nav>
+                </div>
               </div>
               <div></div>
             </div>
@@ -137,7 +143,6 @@ class RecipeDetail extends React.Component {
         ) : (
           ""
         )}
-
       </div>
     );
   }
