@@ -18,7 +18,17 @@ class Saved extends React.Component {
 
   render() {
     if (this.props.savedRecipes.length === 0) {
-      return "no saved recipes";
+      return (
+        <div className="backtosearch-box">
+          <nav className="backtosearch">
+          <br/>
+          <br/>
+            <Link className="backtosearch-text" to={{ pathname: "/search" }}>
+              No Recipes found. Back to Search
+            </Link>
+          </nav>
+        </div>
+      );
     } else {
       // debugger
       return (
@@ -49,7 +59,7 @@ class Saved extends React.Component {
               </div>
             ))}
           </ul>
-                        <div className="backtosearch-box">
+            <div className="backtosearch-box">
                 <nav className="backtosearch">
                   <Link className="backtosearch-text" to={{ pathname: "/search" }}>Back to Search</Link>
                 </nav>
