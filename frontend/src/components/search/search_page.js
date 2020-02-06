@@ -17,12 +17,14 @@ class SearchPage extends React.Component {
       searchVal: "",
       keywordValid: true,
       alreadyEnteredIng: false,
-      SearchRes: false
+      SearchRes: false,
+      note: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.addSearch = this.addSearch.bind(this);
     this.deleteIng = this.deleteIng.bind(this);
     this.saveRecipe = this.saveRecipe.bind(this);
+    this.showNotification = this.showNotification.bind(this);
 
     this.props.fetchRecipes(this.state.searchTerm);
   }
@@ -104,6 +106,14 @@ class SearchPage extends React.Component {
 
   saveRecipe(recipeId) {
     this.props.saveRecipe(this.props.currentUser, recipeId);
+    this.showNotification();
+  }
+
+  showNotification() {
+    document.getElementById("note").style.display = "block";
+    setTimeout(function () {
+      document.getElementById("note").style.display = "none";
+    }, 1000);
   }
 
   render() {
@@ -112,6 +122,7 @@ class SearchPage extends React.Component {
     return (
       <div>
         <div className="searchbackground"></div>
+        <div id="note">Recipe Saved Successfully</div>
         <div className="searchcontent">
           <form className="searchform">
             <div className="errors">
