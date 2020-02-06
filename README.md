@@ -4,6 +4,8 @@ ingredish is a web application that allows us to search for the food recipes, th
 
 [ingredish Live](https://ingredish.herokuapp.com/)
 
+![Main](./readme/ingredishMain.gif)
+
 # Technology
 * Backend: MongoDB, Express
 * Frontend: React/Redux, Node.js
@@ -15,19 +17,29 @@ ingredish is a web application that allows us to search for the food recipes, th
 
 ## Search
 * Using predefined keywords, users can search recipes using ingredients
+* List recipes that match search keywords
+
+![Search](./readme/ingredishSearch.gif)
 
 ## Recipes
-* List recipes that match search keywords
 * Show recipe details once user clicks on a search result
+
+![Detail](./readme/ingredishDetail.gif)
+
+## Favorites
+* Users can save recipes to their favorites list
+
+![Favorites](./readme/ingredishFavorites.gif)
 
 ## Comments
 * Users can leave comments on recipes
+
+![Comments](./readme/ingredishComments.gif)
 
 ## Responsive UI Design
 * Responsive UI design allowing dynamic changes for better user experience on different types of devices
 
 ## Future Plans
-* Providing an option to save recipes to users' personal recipe lists
 * Allow users to add their own recipes
 
 ---
