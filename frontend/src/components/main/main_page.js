@@ -1,5 +1,3 @@
-// src/components/main/main_page.js
-
 import React from "react";
 import './main.scss';
 import background from "./background_video.mp4";

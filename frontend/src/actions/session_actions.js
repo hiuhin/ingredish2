@@ -1,5 +1,3 @@
-// src/actions/session_actions.js
-
 import * as APIUtil from "../util/session_api_util";
 import jwt_decode from "jwt-decode";
 
@@ -28,7 +26,6 @@ export const logoutUser = () => ({
 
 export const signup = user => dispatch =>
   APIUtil.signup(user).then(res => {
-    // () => dispatch(receiveUserSignIn()),
       const { token } = res.data;
       localStorage.setItem("jwtToken", token);
       APIUtil.setAuthToken(token);
