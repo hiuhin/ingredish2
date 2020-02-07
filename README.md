@@ -37,12 +37,14 @@ ingredish is a web application that allows us to search for the food recipes, th
 ![Comments](./readme/ingredishComments.gif)
 
 ## Responsive UI Design
-* Responsive UI design allowing dynamic changes for better user experience on different types of devices
+* Splash page with responsive UI design allowing dynamic changes for better user experience on different types of devices
 
 ![ResponsiveUI](./readme/ingredishResponsive.gif)
 
 ## Future Plans
 * Allow users to add their own recipes
+* Implement Responsive UI throughout the website
+
 
 ---
 ## Group Members
