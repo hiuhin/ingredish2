@@ -52,6 +52,12 @@ class NavBar extends React.Component {
               <div></div>
             </div>
             <div className={this.state.menu}>
+              {/* <Link to="/favorites" className="favorites">
+                <span className="fav-text">Favorites</span>
+                <span className="counter">
+                  {this.props.savedRecipes.length}
+                </span>
+              </Link> */}
               <div className="menu-buttons">
                 <button onClick={this.logoutUser}>Logout</button>
               </div>
@@ -60,12 +66,9 @@ class NavBar extends React.Component {
               <Link to="/favorites" className="favorites">
                 <span className="fav-text">Favorites</span>
                 <span className="counter">
-                  {/* {this.props.savedRecipes.length === 0 ? "" 
-                    : this.props.savedRecipes.length} */}
                   {this.props.savedRecipes.length}
                 </span>
               </Link>
-
               <button onClick={this.logoutUser}>Logout</button>
             </div>
           </div>

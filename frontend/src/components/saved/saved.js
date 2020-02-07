@@ -26,8 +26,11 @@ class Saved extends React.Component {
             <nav className="backtosearch">
               <br />
               <br />
+              <br/>
+              <br/>
+              <br/>
               <Link className="backtosearch-text" to={{ pathname: "/search" }}>
-                No Recipes found. Back to Search
+                No Saved Recipes! Click to go Back to Search
               </Link>
             </nav>
           </div>
