@@ -197,13 +197,15 @@ handleSubmit() {
 ---
 ## Group Members
 
-[<img src="./readme/github.png" width="30">](https://github.com/benjaminhuh) Benjamin Huh 
+Anne Wong &nbsp;&nbsp;
+[<img src="./readme/github.png" width="30" align=center>](https://github.com/hiuhin) 
 
+Benjamin Huh &nbsp;&nbsp;
+[<img src="./readme/github.png" width="30" align=center>](https://github.com/benjaminhuh) 
 
-[<img src="./readme/github.png" width="30">](https://github.com/knandhu) Nandhu Kuppusamy 
+Nandhu Kuppusamy &nbsp;&nbsp;
+[<img src="./readme/github.png" width="30" align=center>](https://github.com/knandhu) 
 
+Noel Seo &nbsp;&nbsp;
+[<img src="./readme/github.png" width="30" align=center>](https://github.com/noelseo) 
 
-[<img src="./readme/github.png" width="30">](https://github.com/noelseo) Noel Seo 
-
-
-[<img src="./readme/github.png" width="30">](https://github.com/hiuhin) Anne Wong 
