@@ -12,8 +12,32 @@ ingredish is a web application that provides various food recipes based on the s
 
 # Features and MVPs
 ## User authorization
-* Securely salt and hash users' passwords
+* Securely salt and hash users' passwords using BCrypt
 * Allow users to sign up, login, and logout
+
+```javascript 
+bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+        newUser.password = hash;
+        newUser
+            .save()
+            .then(user => { 
+                const payload = { id: user.id, handle: user.handle };
+            jwt.sign(
+                payload,
+                keys.secretOrKey,
+                { expiresIn: 3600 },
+                (err, token) => {
+                    res.json({
+                    success: true,
+                    token: "Bearer " + token
+                });
+                }
+            )})
+            .catch(err => console.log(err));
+    });
+}
+```
 
 ## Search
 * Using predefined keywords, users can search recipes using ingredients
@@ -21,15 +45,27 @@ ingredish is a web application that provides various food recipes based on the s
 
 ![Search](./readme/ingredishSearch.gif)
 
+```javascript
+
+```
+
 ## Recipes
 * Show recipe details once user clicks on a search result
 
 ![Detail](./readme/ingredishDetail.gif)
 
+```javascript
+
+```
+
 ## Favorites
 * Users can save recipes to their favorites list
 
 ![Favorites](./readme/ingredishFavorites.gif)
+
+```javascript
+
+```
 
 ## Comments
 * Once users land on a recipe show page, user is able to add a comment on to the comments field which lets them share their opinions about the recipe with other users.
@@ -82,9 +118,13 @@ handleSubmit() {
 
 ![ResponsiveUI](./readme/ingredishResponsive.gif)
 
+```javascript
+
+```
+
 ## Future Plans
 * Allow users to add their own recipes
-* Implement Responsive UI throughout the website
+* Improve Responsive UI throughout the website
 
 
 ---
