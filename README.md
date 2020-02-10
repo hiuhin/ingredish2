@@ -46,16 +46,49 @@ bcrypt.genSalt(10, (err, salt) => {
 ![Search](./readme/ingredishSearch.gif)
 
 ```javascript
+async getKeywordValid() {
+    try {
+        let search = this.state.searchVal;
+        let res = await fetchKeyword(this.state.searchVal);
 
+        if (res.data && !this.state.searchTerm.some(ing => ing === search)) {
+            this.setState({
+                searchTerm: [...this.state.searchTerm, search],
+                keywordValid: true,
+                alreadyEnteredIng: false
+            });
+        } else if (this.state.searchTerm.some(ing => ing === search)) {
+            this.setState({
+                alreadyEnteredIng: true,
+                keywordValid: true
+            });
+        } else {
+            this.setState({
+                keywordValid: false
+            });
+        }
+    } catch (err) {
+        console.log(err.message);
+    }
+}
 ```
 
 ## Recipes
-* Show recipe details once user clicks on a search result
+* Show the detailed information of the recipe once user clicks on the choice
 
 ![Detail](./readme/ingredishDetail.gif)
 
 ```javascript
-
+class RecipeDetail extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            comment: "",
+            recipe: this.props.getRecipe(this.props.match.params.recipeId),
+            commentsToggle: true
+        };
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
 ```
 
 ## Favorites
@@ -64,7 +97,16 @@ bcrypt.genSalt(10, (err, salt) => {
 ![Favorites](./readme/ingredishFavorites.gif)
 
 ```javascript
-
+router.post("/:id/recipes", (req, res) => {
+    User.findById(req.params.id)
+        .then(user => {
+            user.saved_recipes.push(Object.keys(req.body)[0]);
+            user.save();
+            Recipe.find({ _id: { $in: user.saved_recipes } }).then(objects => {
+                res.json(objects);
+            });
+        })
+})
 ```
 
 ## Comments
@@ -119,6 +161,31 @@ handleSubmit() {
 ![ResponsiveUI](./readme/ingredishResponsive.gif)
 
 ```javascript
+@media only screen and (max-width: 600px) {
+    .logo {
+        width: 160px;
+        height: 60px;
+        margin-top: -5px;
+    }
+
+    .right-links button {
+        display: none;
+    }
+
+    .navbar {
+        position: fixed;
+        top: 2%;
+        width: 100vw;
+        background-color: rgba(17, 17, 17, 0.3);
+        height: 40px;
+    }
+
+    .nav-icon, .nav-icon-active {
+        top: 0;
+        right: 0;
+        margin: 1.2em;
+        width: 35px;
+    }
 
 ```
 
@@ -130,6 +197,13 @@ handleSubmit() {
 ---
 ## Group Members
 Benjamin Huh 
+[<img src="./readme/github.png" width="50">](https://github.com/benjaminhuh)
+
 Nandhu Kuppusamy 
-Noel Seo
-Anne Wong
+[<img src="./readme/github.png" width="50">](https://github.com/knandhu)
+
+Noel Seo 
+[<img src="./readme/github.png" width="50">](https://github.com/noelseo)
+
+Anne Wong 
+[<img src="./readme/github.png" width="50">](https://github.com/hiuhin)
