@@ -85,7 +85,6 @@ class SearchPage extends React.Component {
     async returnRecipe() {
         try {
             let recipes = await this.props.fetchRecipes(this.state.searchTerm);
-            // console.log("searchRes", recipes.recipes.data.length);
 
             if (recipes.recipes.data.length !== 0) {
                 this.setState({
