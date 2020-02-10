@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const createKeyword = (keyword) => {
-  return axios.post(`/api/keywords`, keyword);
+    return axios.post(`/api/keywords`, keyword);
 };
 
 export const fetchKeyword = (name) => {
