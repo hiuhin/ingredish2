@@ -1,4 +1,4 @@
-[<img src="./readme/ingredish-logo-black.png" width="350" align=center>](https://ingredish.herokuapp.com/)
+[<img src="./readme/ingredish-logo-black.png" width="400" align=center>](https://ingredish.herokuapp.com/)
 
 # 
 
