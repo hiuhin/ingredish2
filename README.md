@@ -1,9 +1,8 @@
 # ingredish
 
 &nbsp;
-[<img src="./readme/ingredish-logo-black.png" width="300" align=center>](https://ingredish.herokuapp.com/)
+[<img src="./readme/ingredish-logo-black.png" width="350" align=center>](https://ingredish.herokuapp.com/)
 
-&nbsp;
 
 ingredish is a web application that provides various food recipes based on the searched ingredients and allows users to save recipes on to their favorites list. Additionally, users are able to leave public comments on each recipe that are available to other users.
 
