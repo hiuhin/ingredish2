@@ -160,7 +160,7 @@ handleSubmit() {
 
 ![ResponsiveUI](./readme/ingredishResponsive.gif)
 
-```javascript
+```css
 @media only screen and (max-width: 600px) {
     .logo {
         width: 160px;
