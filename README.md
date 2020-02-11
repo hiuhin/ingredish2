@@ -1,7 +1,7 @@
 # ingredish
 
 &nbsp;
-[<img src="./readme/ingredish-logo-black.png" width="200" align=center>](https://ingredish.herokuapp.com/)
+[<img src="./readme/ingredish-logo-black.png" width="300" align=center>](https://ingredish.herokuapp.com/)
 
 &nbsp;
 
