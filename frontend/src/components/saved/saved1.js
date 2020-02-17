@@ -28,9 +28,8 @@ class Saved extends React.Component {
               <br />
               <br />
               <br />
-              <br />
               <Link className="backtosearch-text" to={{ pathname: "/search" }}>
-                No Saved Recipes! Click to Go Back to Search.
+                No Saved Recipes! Click to go Back to Search
               </Link>
             </nav>
           </div>
@@ -40,17 +39,9 @@ class Saved extends React.Component {
       return (
         <div>
           <div className="savedbackground"></div>
-          <div className="favorite">
-            <div className="backtosearch-box">
-              <nav className="backtosearch">
-                <Link
-                  className="backtosearch-text"
-                  to={{ pathname: "/search" }}
-                >
-                  Back to Search
-                </Link>
-              </nav>
-            </div>
+          <div className="recipes">
+            <br />
+            <br />
 
             <ul>
               {this.props.savedRecipes.map((recipe, idx) => (
@@ -78,6 +69,7 @@ class Saved extends React.Component {
                 </div>
               ))}
             </ul>
+
             <div className="backtosearch-box">
               <nav className="backtosearch">
                 <Link
