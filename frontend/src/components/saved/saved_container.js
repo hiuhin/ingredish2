@@ -1,12 +1,8 @@
 import { connect } from "react-redux";
-import {
-    getSavedRecipes,
-    removeSavedRecipe
-} from "../../actions/recipe_actions.js"
+import { getSavedRecipes, removeSavedRecipe } from "../../actions/recipe_actions.js"
 import Saved from "./saved";
 
 const mSTP = state => {
-    // debugger
     return {
         currentUser: state.session.user,
         savedRecipes: Object.values(state.saved_recipes)

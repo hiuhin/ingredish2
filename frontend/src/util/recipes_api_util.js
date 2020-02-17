@@ -9,7 +9,6 @@ export const fetchRecipe = (id) => {
 };
 
 export const updateRecipe = (id, comment) => {
-    // debugger;
     return axios.patch(`/api/recipes/${id}/?search=${comment}`);
 }
 
@@ -26,5 +25,5 @@ export const removeSavedRecipe = (currentUser, recipeId) => {
 }
 
 export const getRecipe = id => {
-    return axios.get(`/api/recipes/${id}`)
+    return axios.get(`/api/recipes/${id}`);
 }

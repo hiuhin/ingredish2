@@ -57,15 +57,14 @@
 }
 
 .errors p::after {
-  content: "";
-  position: absolute;
-  bottom: -22px;
-  left: 50px;
-  margin-left: 5px;
-  border-width: 12px;
-  border-style: solid;
-  border-color: slategray transparent transparent transparent;
-
+    content: "";
+    position: absolute;
+    bottom: -22px;
+    left: 50px;
+    margin-left: 5px;
+    border-width: 12px;
+    border-style: solid;
+    border-color: slategray transparent transparent transparent;
 }
 
 .searchbar {
@@ -118,7 +117,6 @@
     border-radius: 5px;
     color: whitesmoke;
     background-color: rgb(255, 129, 11);
-    // border: rgb(255, 255, 255) 1px solid;
 }
 
 .searchbutton:hover {
@@ -144,7 +142,6 @@
 
 .recipeimg {
     object-fit: cover;
-    // object-position: -20 10px;
     width: 240px;   
     height: 135px; 
     border-top-left-radius: 5px;
@@ -157,7 +154,6 @@
     color: white;
     text-decoration: none;
     font-size: 20px;
-    // padding: 10px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 

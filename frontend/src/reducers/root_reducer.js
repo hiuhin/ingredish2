@@ -6,11 +6,11 @@ import recipes from './recipe_reducer';
 import ui from "./ui_reducer";
 
 const RootReducer = combineReducers({
-  saved_recipes,
-  session,
-  recipes,
-  errors,
-  ui
+    saved_recipes,
+    session,
+    recipes,
+    errors,
+    ui
 });
 
 export default RootReducer;

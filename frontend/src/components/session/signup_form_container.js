@@ -6,22 +6,18 @@ import { openModal, closeModal } from "../../actions/modal_actions";
 import '../modal/modal.scss';
 
 const mapStateToProps = state => {
-  return {
-    signedIn: state.session.isSignedIn,
-    errors: state.errors.session
-  };
+    return {
+        signedIn: state.session.isSignedIn,
+        errors: state.errors.session
+    };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {
-    signup: user => dispatch(signup(user)),
-    closeModal: () => dispatch(closeModal()),
-    otherForm: (
-      <button onClick={() => dispatch(openModal('login'))}>
-        Signup
-      </button>
-    ),
-  };
+    return {
+        signup: user => dispatch(signup(user)),
+        closeModal: () => dispatch(closeModal()),
+        otherForm: (<button onClick={() => dispatch(openModal('login'))}>Signup</button>),
+    };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupForm);

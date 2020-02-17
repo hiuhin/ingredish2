@@ -1,39 +1,37 @@
-// src/components/session/signup_form.js
-
 import React from "react";
 import { withRouter } from "react-router-dom";
 import "./session_form.scss";
 import egg from "../../images/egg1.png";
 
 class SignupForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      email: "",
-      handle: "",
-      password: "",
-      password2: "",
-      errors: {}
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: "",
+            handle: "",
+            password: "",
+            password2: "",
+            errors: {}
+        };
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.clearedErrors = false;
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.signedIn === true) {
-      this.props.history.push("/search");
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.clearedErrors = false;
     }
 
-    this.setState({ errors: nextProps.errors });
-  }
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (nextProps.signedIn === true) {
+            this.props.history.push("/search");
+        }
 
-  update(field) {
-    return e =>
-      this.setState({
-        [field]: e.currentTarget.value
-      });
-  }
+        this.setState({ errors: nextProps.errors });
+    }
+
+    update(field) {
+        return e =>
+            this.setState({
+                [field]: e.currentTarget.value
+            });
+    }
 
   handleSubmit(e) {
     e.preventDefault();
@@ -46,7 +44,6 @@ class SignupForm extends React.Component {
 
     this.props
       .signup(user, this.props.history)
-      // .then(() => this.props.closeModal());
   }
 
   renderErrors() {
