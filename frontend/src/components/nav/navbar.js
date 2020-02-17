@@ -37,9 +37,7 @@ class NavBar extends React.Component {
             return (
               <div className="navbar">
                 <div className="nav-left">
-                  <Link
-                    to={{ pathname: "/search" }}
-                  >
+                  <Link to={{ pathname: "/search" }}>
                     <img src={logo} className="logo" alt="logo" />
                   </Link>
                 </div>
@@ -53,6 +51,7 @@ class NavBar extends React.Component {
                   <div className={this.state.menu}>
                     <div className="menu-buttons">
                       <button onClick={this.logoutUser}>Logout</button>
+                      <Link to="/favorites">Favorites</Link>
                     </div>
                   </div>
 

@@ -30,7 +30,7 @@
     justify-content: space-between;
 }
 
-.right-links button {
+.right-links > * {
     padding: 10px 12px;
     margin: 7px;   
     color: white;
@@ -78,7 +78,7 @@
         margin-top: -5px;
     }
 
-    .right-links button {
+    .right-links > * {
         display: none;
     }
 
@@ -148,6 +148,7 @@
         text-decoration: none;
         display: inline-block;
         font-size: 16px;
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     }
 
 
