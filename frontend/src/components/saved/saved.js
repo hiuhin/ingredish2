@@ -41,6 +41,17 @@ class Saved extends React.Component {
         <div>
           <div className="savedbackground"></div>
           <div className="favorite">
+            <div className="backtosearch-box">
+              <nav className="backtosearch">
+                <Link
+                  className="backtosearch-text"
+                  to={{ pathname: "/search" }}
+                >
+                  Back to Search
+                </Link>
+              </nav>
+            </div>
+
             <ul>
               {this.props.savedRecipes.map((recipe, idx) => (
                 <div className="searched_recipe_items" key={`recipe-${idx}`}>
