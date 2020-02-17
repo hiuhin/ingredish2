@@ -4,87 +4,137 @@ import "./session_form.scss";
 import egg from "../../images/egg1.png";
 
 class LoginForm extends React.Component {
-    constructor(props) {
-        super(props);
+  constructor(props) {
+    super(props);
 
-        this.state = {
-            email: "",
-            password: "",
-            errors: {}
-        };
+    this.state = {
+      email: "",
+      password: "",
+      errors: {}
+    };
 
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.renderErrors = this.renderErrors.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.renderErrors = this.renderErrors.bind(this);
+    this.handleDemo = this.handleDemo.bind(this);
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.currentUser === true) {
+      this.props.history.push("/search" + this.props.history.location.search);
     }
 
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        if (nextProps.currentUser === true) {
-            this.props.history.push("/search" + this.props.history.location.search);
-        }
+    this.setState({ errors: nextProps.errors });
+  }
 
-        this.setState({ errors: nextProps.errors });
-    }
+  update(field) {
+    return e =>
+      this.setState({
+        [field]: e.currentTarget.value
+      });
+  }
 
-    update(field) {
-        return e =>
-            this.setState({
-                [field]: e.currentTarget.value
-            });
-    }
+  handleSubmit(e) {
+    e.preventDefault();
 
-    handleSubmit(e) {
-        e.preventDefault();
+    let user = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    this.props.login(user)
+  }
 
-        let user = {
-            email: this.state.email,
-            password: this.state.password
-        };
-        this.props.login(user)
-    }
+  handleDemo(e) {
+    e.preventDefault();
 
-    renderErrors() {
-        return (
-            <ul>
-                {Object.keys(this.state.errors).map((error, i) => (
-                    <li className="each-error" key={`error-${i}`}>{this.state.errors[error]}</li>
-                ))}
-            </ul>
-        );
-    }
+    let user = {
+      email: "demo@demo.com",
+      password: "demouser"
+    };
+    this.demo(user)
+  }
+
+  demo(user) {
+    const intervalSpeed = 75;
+    const { email, password } = user;
+    const demoEmailTime = email.length * intervalSpeed;
+    const demoPasswordTime = password.length * intervalSpeed;
+    const buffer = intervalSpeed * 2;
+    const totalDemoTime = demoEmailTime + demoPasswordTime + buffer;
+    this.demoEmail(email, intervalSpeed);
+    setTimeout(() => this.demoPassword(password, intervalSpeed), demoEmailTime);
+    setTimeout(() => this.props.login(user), totalDemoTime + 100);
+  }
+  demoEmail(email, intervalSpeed) {
+    let i = 0;
+    setInterval(() => {
+      if (i <= email.length) {
+        this.setState({ email: email.slice(0, i) });
+        i++;
+      } else {
+        clearInterval();
+      }
+    }, intervalSpeed);
+  }
+  demoPassword(password, intervalSpeed) {
+    let j = 0;
+    setInterval(() => {
+      if (j <= password.length) {
+        this.setState({ password: password.slice(0, j) });
+        j++;
+      } else {
+        clearInterval();
+      }
+    }, intervalSpeed);
+  }
+
+  renderErrors() {
+    return (
+      <ul>
+        {Object.keys(this.state.errors).map((error, i) => (
+          <li className="each-error" key={`error-${i}`}>{this.state.errors[error]}</li>
+        ))}
+      </ul>
+    );
+  }
 
 
-    render() {
-        return (
-            <div className="login-form-container">
+  render() {
+    return (
+      <div className="login-form-container">
 
-                {this.renderErrors()}
+        {this.renderErrors()}
 
-                <div className="login-form">
-                    <div className="title">Log in</div>
+        <div className="login-form">
+          <div className="title">Log in</div>
 
-                    <form>
-                        <div className="inner-login-form">
-                            <input
-                                type="text"
-                                value={this.state.email}
-                                onChange={this.update("email")}
-                                placeholder="Email"
-                            />
+          <form>
+            <div className="inner-login-form">
+              <input
+                type="text"
+                value={this.state.email}
+                onChange={this.update("email")}
+                placeholder="Email"
+              />
 
-                            <input
-                                type="password"
-                                value={this.state.password}
-                                onChange={this.update("password")}
-                                placeholder="Password"
-                            />
+              <input
+                type="password"
+                value={this.state.password}
+                onChange={this.update("password")}
+                placeholder="Password"
+              />
+              
+              <div className="login-buttons">
+                <button onClick={this.handleDemo} className="session-button"> Demo </button>
+                <button className="session-button" onClick={this.handleSubmit}>Sign In</button>
+                <br />
+              </div>
 
-                            <div /><img alt="login-submit" src={egg} className="submit" onClick={this.handleSubmit} width="65px" height="65px" /></div>
-                    </form>
-                    
-                </div>
-            </div>
-        );
-    }
+              </div>
+          </form>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default withRouter(LoginForm);

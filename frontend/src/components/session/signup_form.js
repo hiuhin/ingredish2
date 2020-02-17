@@ -33,75 +33,78 @@ class SignupForm extends React.Component {
             });
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
-        let user = {
-            email: this.state.email,
-            handle: this.state.handle,
-            password: this.state.password,
-            password2: this.state.password2
-        };
+  handleSubmit(e) {
+    e.preventDefault();
+    let user = {
+      email: this.state.email,
+      handle: this.state.handle,
+      password: this.state.password,
+      password2: this.state.password2
+    };
 
-        this.props
-            .signup(user, this.props.history)
-    }
+    this.props
+      .signup(user, this.props.history)
+  }
 
-    renderErrors() {
-        return (
-            <ul className="error-list">
-                {Object.keys(this.state.errors).map((error, i) => (
-                    <li className="each-error" key={`error-${i}`}>{this.state.errors[error]}</li>
-                ))}
-            </ul>
-        );
-    }
+  renderErrors() {
+    return (
+      <ul className="error-list">
+        {Object.keys(this.state.errors).map((error, i) => (
+          <li className="each-error" key={`error-${i}`}>{this.state.errors[error]}</li>
+        ))}
+      </ul>
+    );
+  }
 
-    render() {
-        return (
+  render() {
+    return (
+      
+      <div className="signup-form-container">
 
-            <div className="signup-form-container">
+        {this.renderErrors()}
 
-                {this.renderErrors()}
+        <div className="signup-form">
+          <div className="title">Sign Up</div>
+          <form>
+            <div className="inner-signup-form">
+              <input
+                type="text"
+                value={this.state.handle}
+                onChange={this.update("handle")}
+                placeholder="Name"
+              />
 
-                <div className="signup-form">
-                    <div className="title">Sign Up</div>
+              <input
+                type="text"
+                value={this.state.email}
+                onChange={this.update("email")}
+                placeholder="Email"
+              />
 
-                    <form>
-                        <div className="inner-signup-form">
-                            <input
-                                type="text"
-                                value={this.state.handle}
-                                onChange={this.update("handle")}
-                                placeholder="Name"
-                            />
+              <input
+                type="password"
+                value={this.state.password}
+                onChange={this.update("password")}
+                placeholder="Password"
+              />
 
-                            <input
-                                type="text"
-                                value={this.state.email}
-                                onChange={this.update("email")}
-                                placeholder="Email"
-                            />
+              <input
+                type="password"
+                value={this.state.password2}
+                onChange={this.update("password2")}
+                placeholder="Confirm Password"
+              />
 
-                            <input
-                                type="password"
-                                value={this.state.password}
-                                onChange={this.update("password")}
-                                placeholder="Password"
-                            />
-
-                            <input
-                                type="password"
-                                value={this.state.password2}
-                                onChange={this.update("password2")}
-                                placeholder="Confirm Password"
-                            />
-                            <div /><img src={egg} className="submit" onClick={this.handleSubmit} width="65px" height="65px" alt="submit_button" /></div>
-                    </form>
-                    
-                </div>
+              <div className="session-buttons">
+                <button className="session-button" onClick={this.handleSubmit}>Sign Up</button>
+                <br />
+              </div>
             </div>
-        );
-    }
+          </form>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default withRouter(SignupForm);
