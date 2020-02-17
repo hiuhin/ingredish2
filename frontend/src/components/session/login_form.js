@@ -17,6 +17,7 @@ class LoginForm extends React.Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.renderErrors = this.renderErrors.bind(this);
+    this.handleDemo = this.handleDemo.bind(this);
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -44,7 +45,50 @@ class LoginForm extends React.Component {
     this.props.login(user)
       // .then(() => this.props.closeModal())
       // .then(() => this.props.history.push("/search"));
-    
+  }
+
+  handleDemo(e) {
+    e.preventDefault();
+
+    let user = {
+      email: "demo@demo.com",
+      password: "demouser"
+    };
+    this.demo(user)
+  }
+
+  demo(user) {
+    const intervalSpeed = 75;
+    const { email, password } = user;
+    const demoEmailTime = email.length * intervalSpeed;
+    const demoPasswordTime = password.length * intervalSpeed;
+    const buffer = intervalSpeed * 2;
+    const totalDemoTime = demoEmailTime + demoPasswordTime + buffer;
+    this.demoEmail(email, intervalSpeed);
+    setTimeout(() => this.demoPassword(password, intervalSpeed), demoEmailTime);
+    setTimeout(() => this.props.login(user), totalDemoTime + 100);
+  }
+  demoEmail(email, intervalSpeed) {
+    let i = 0;
+    setInterval(() => {
+      if (i <= email.length) {
+        this.setState({ email: email.slice(0, i) });
+        i++;
+      } else {
+        clearInterval();
+      }
+    }, intervalSpeed);
+  }
+  demoPassword(password, intervalSpeed) {
+    let j = 0;
+    setInterval(() => {
+      if (j <= password.length) {
+        this.setState({ password: password.slice(0, j) });
+        j++;
+      } else {
+        clearInterval();
+      }
+    }, intervalSpeed);
   }
 
   renderErrors() {
@@ -83,8 +127,13 @@ class LoginForm extends React.Component {
                 placeholder="Password"
               />
               
-              <div /><img alt="login-submit" src={egg} className="submit" onClick={this.handleSubmit} width="65px" height="65px" /></div>
-      
+              <div className="login-buttons">
+                <button onClick={this.handleDemo} className="session-button"> Demo </button>
+                <button className="session-button" onClick={this.handleSubmit}>Sign In</button>
+                <br />
+              </div>
+
+              </div>
           </form>
         </div>
       </div>
